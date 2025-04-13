@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,40 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom Tujue Ukulima colors
+				"tu-green": {
+					100: "#E6EFE7",
+					200: "#C4DAC6",
+					300: "#9FC5A3",
+					400: "#7AAF7F",
+					500: "#559A5B",
+					600: "#437B48",
+					700: "#2F5233",
+					800: "#1F361F",
+					900: "#0F1B0F",
+				},
+				"tu-brown": {
+					100: "#F2E4D5",
+					200: "#E5CAB0",
+					300: "#D3AD87",
+					400: "#C1915D",
+					500: "#A37641",
+					600: "#8B4513",
+					700: "#6A350F",
+					800: "#48240A",
+					900: "#271205",
+				},
+				"tu-blue": {
+					100: "#E3F2FA",
+					200: "#C7E5F5",
+					300: "#A6D7F0",
+					400: "#87CEEB",
+					500: "#5CBDE3",
+					600: "#3AACD9",
+					700: "#228FC0",
+					800: "#156F98",
+					900: "#084F70",
 				}
 			},
 			borderRadius: {
@@ -84,11 +119,37 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-out': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+			},
+			fontFamily: {
+				sans: ['Open Sans', 'sans-serif'],
+				heading: ['Montserrat', 'sans-serif'],
 			}
 		}
 	},
