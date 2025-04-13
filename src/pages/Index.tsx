@@ -6,6 +6,7 @@ import RecentArticles from "@/components/home/RecentArticles";
 import FeaturedVideos from "@/components/home/FeaturedVideos";
 import AskExpertPromo from "@/components/home/AskExpertPromo";
 import StatisticsSection from "@/components/home/StatisticsSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <HeroSection />
       <FeaturedTopics />
       <RecentArticles />
+      <TestimonialsSection />
       <FeaturedVideos />
       <AskExpertPromo />
       <StatisticsSection />
