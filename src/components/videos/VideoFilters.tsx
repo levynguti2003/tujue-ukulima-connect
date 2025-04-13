@@ -3,16 +3,7 @@ import { useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronDown, Filter } from "lucide-react";
-
-const categories = [
-  "All Categories",
-  "Pest Control",
-  "Smart Farming",
-  "Drone Spraying",
-  "Climate-Smart Agriculture",
-  "Soil Health",
-  "Rice Farming"
-];
+import { videoCategories } from "@/utils/videoData";
 
 interface VideoFiltersProps {
   onFilterChange: (category: string) => void;
@@ -46,8 +37,8 @@ const VideoFilters = ({ onFilterChange }: VideoFiltersProps) => {
       
       {/* Mobile filters */}
       <div className={`md:hidden ${showFilters ? "block" : "hidden"}`}>
-        <div className="space-y-2 mt-2">
-          {categories.map((category) => (
+        <div className="space-y-2 mt-2 max-h-64 overflow-y-auto">
+          {videoCategories.map((category) => (
             <div
               key={category}
               className={`flex justify-between items-center px-3 py-2 rounded-md cursor-pointer ${
@@ -64,7 +55,7 @@ const VideoFilters = ({ onFilterChange }: VideoFiltersProps) => {
       
       {/* Desktop filters */}
       <div className="hidden md:flex flex-wrap gap-2 mt-2">
-        {categories.map((category) => (
+        {videoCategories.map((category) => (
           <Badge
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}

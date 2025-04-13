@@ -14,10 +14,10 @@ const Index = () => {
       <HeroSection />
       <FeaturedTopics />
       <RecentArticles />
-      <TestimonialsSection />
       <FeaturedVideos />
-      <AskExpertPromo />
       <StatisticsSection />
+      <TestimonialsSection />
+      <AskExpertPromo />
     </Layout>
   );
 };

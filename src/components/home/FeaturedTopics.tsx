@@ -5,6 +5,30 @@ import { ArrowRight } from "lucide-react";
 
 const topics = [
   {
+    title: "Crop Production",
+    description: "Essential techniques for successful crop cultivation from planting to harvest",
+    icon: "🌽",
+    link: "/articles/crop-production",
+    color: "bg-amber-50 border-amber-200",
+    iconBg: "bg-amber-100"
+  },
+  {
+    title: "Animal Production",
+    description: "Best practices for livestock and poultry farming for optimal yields",
+    icon: "🐄",
+    link: "/articles/animal-production",
+    color: "bg-blue-50 border-blue-200",
+    iconBg: "bg-blue-100"
+  },
+  {
+    title: "Precision Agriculture",
+    description: "Modern technology for data-driven farming decisions",
+    icon: "📡",
+    link: "/articles/precision-agriculture",
+    color: "bg-purple-50 border-purple-200",
+    iconBg: "bg-purple-100"
+  },
+  {
     title: "Pest Control",
     description: "Learn effective strategies to manage pests and protect your crops",
     icon: "🐛",
@@ -17,16 +41,16 @@ const topics = [
     description: "Discover how technology can improve your farming practices",
     icon: "🌱",
     link: "/articles/smart-farming",
-    color: "bg-blue-50 border-blue-200",
-    iconBg: "bg-blue-100"
+    color: "bg-teal-50 border-teal-200",
+    iconBg: "bg-teal-100"
   },
   {
     title: "Drone Spraying",
     description: "Explore the benefits of using drones for crop spraying",
     icon: "🚁",
     link: "/articles/drone-spraying",
-    color: "bg-purple-50 border-purple-200",
-    iconBg: "bg-purple-100"
+    color: "bg-indigo-50 border-indigo-200",
+    iconBg: "bg-indigo-100"
   },
   {
     title: "Climate-Smart Agriculture",
@@ -41,16 +65,16 @@ const topics = [
     description: "Maintain soil fertility for sustainable crop production",
     icon: "🌿",
     link: "/articles/soil-health",
-    color: "bg-amber-50 border-amber-200",
-    iconBg: "bg-amber-100"
+    color: "bg-yellow-50 border-yellow-200",
+    iconBg: "bg-yellow-100"
   },
   {
     title: "Rice Farming",
     description: "Best practices for successful rice cultivation",
     icon: "🌾",
     link: "/articles/rice-farming",
-    color: "bg-yellow-50 border-yellow-200",
-    iconBg: "bg-yellow-100"
+    color: "bg-orange-50 border-orange-200",
+    iconBg: "bg-orange-100"
   }
 ];
 
@@ -65,7 +89,7 @@ const FeaturedTopics = () => {
           Explore our comprehensive knowledge base on these important agricultural topics
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {topics.map((topic, index) => (
             <Link key={index} to={topic.link}>
               <Card className={`h-full border ${topic.color} hover:shadow-md transition-shadow cursor-pointer`}>

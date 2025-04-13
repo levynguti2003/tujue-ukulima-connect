@@ -3,23 +3,18 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Play, Download, Bookmark, User } from "lucide-react";
-
-export interface VideoProps {
-  id: number;
-  title: string;
-  description: string;
-  author: string;
-  category: string;
-  duration: string;
-  thumbnail: string;
-  slug: string;
-}
+import { VideoItem } from "@/utils/videoData";
 
 interface VideoCardProps {
-  video: VideoProps;
+  video: VideoItem;
 }
 
 const VideoCard = ({ video }: VideoCardProps) => {
+  const handleWatchVideo = (e: React.MouseEvent, youtubeId: string) => {
+    e.preventDefault();
+    window.open(`https://www.youtube.com/watch?v=${youtubeId}`, '_blank');
+  };
+
   return (
     <Card className="overflow-hidden h-full flex flex-col card-hover">
       <div className="relative h-48 sm:h-56 overflow-hidden">
@@ -27,8 +22,12 @@ const VideoCard = ({ video }: VideoCardProps) => {
           src={video.thumbnail} 
           alt={video.title} 
           className="w-full h-full object-cover"
+          loading="lazy"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <div 
+          className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+          onClick={(e) => handleWatchVideo(e, video.youtubeId)}
+        >
           <div className="bg-white rounded-full p-3 transform hover:scale-110 transition-transform">
             <Play className="h-8 w-8 text-tu-green-700 ml-0.5" />
           </div>
@@ -65,10 +64,11 @@ const VideoCard = ({ video }: VideoCardProps) => {
         </div>
         <button 
           className="flex items-center text-tu-green-600 hover:text-tu-green-700"
-          aria-label="Download video"
+          onClick={(e) => handleWatchVideo(e, video.youtubeId)}
+          aria-label="Watch video"
         >
-          <Download className="h-4 w-4 mr-1" />
-          <span>Download</span>
+          <Play className="h-4 w-4 mr-1" />
+          <span>Watch</span>
         </button>
       </CardFooter>
     </Card>
