@@ -3,39 +3,49 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Calendar, User } from "lucide-react";
+import { Calendar, User, ExternalLink } from "lucide-react";
 
-// Mock data for articles
+// Updated article data with LinkedIn links
 const articles = [
   {
     id: 1,
-    title: "Modern Approaches to Pest Control in Rice Farming",
-    excerpt: "Discover the latest techniques in managing pests that affect rice crops while minimizing environmental impact.",
-    author: "Dr. Sarah Kamau",
-    date: "April 8, 2025",
-    category: "Pest Control",
-    image: "https://images.unsplash.com/photo-1473973266408-ed4e00bb0eb1",
-    slug: "/articles/modern-approaches-to-pest-control"
+    title: "The Science of Rotor-Induced Vortices: Revolutionizing Agricultural Spraying Efficiency",
+    excerpt: "Learn how the physics of rotor-induced vortices is transforming agricultural spraying techniques for improved efficiency and coverage.",
+    author: "Tujue Ukulima Team",
+    date: "April 12, 2025",
+    category: "Precision Agriculture",
+    image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
+    externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7275044559825371136"
   },
   {
     id: 2,
-    title: "How Drone Technology is Revolutionizing Agriculture",
-    excerpt: "Explore how drones are changing the way farmers monitor crops, apply treatments, and increase efficiency.",
+    title: "The Internet of Things (IoT) in Smart Farming",
+    excerpt: "Discover how IoT sensors and connected devices are enabling data-driven decision making and automation in modern agriculture.",
     author: "Michael Ochieng",
-    date: "April 5, 2025",
+    date: "April 8, 2025",
     category: "Smart Farming",
-    image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
-    slug: "/articles/drone-technology-in-agriculture"
+    image: "https://images.unsplash.com/photo-1520453803296-c39eabe2dab4",
+    externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7266351263036960768"
   },
   {
     id: 3,
-    title: "Improving Soil Health for Sustainable Crop Production",
-    excerpt: "Learn essential practices for maintaining and enhancing soil fertility to ensure long-term agricultural productivity.",
+    title: "Why Innovation Requires Careful Consideration of the Broader Ecosystem",
+    excerpt: "Exploring how successful agricultural innovation depends on understanding and adapting to the complete farming ecosystem.",
     author: "Grace Wanjiku",
-    date: "April 2, 2025",
-    category: "Soil Health",
+    date: "April 5, 2025",
+    category: "Innovation",
     image: "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad",
-    slug: "/articles/improving-soil-health"
+    externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7265227993009049600"
+  },
+  {
+    id: 4,
+    title: "How Drones and AI Are Shaping the Future of Rice Farming",
+    excerpt: "An in-depth look at how drone technology combined with artificial intelligence is transforming rice cultivation practices.",
+    author: "Dr. Sarah Kamau",
+    date: "April 2, 2025",
+    category: "Drone Technology",
+    image: "https://images.unsplash.com/photo-1602492225818-4056a71f6d5c",
+    externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7262377464142692352"
   }
 ];
 
@@ -52,7 +62,7 @@ const RecentArticles = () => {
           </Button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {articles.map((article) => (
             <Card key={article.id} className="overflow-hidden h-full flex flex-col card-hover">
               <div className="relative h-48 overflow-hidden">
@@ -67,11 +77,12 @@ const RecentArticles = () => {
               </div>
               
               <CardContent className="pt-6 flex-grow">
-                <Link to={article.slug}>
-                  <h3 className="text-xl font-semibold mb-3 hover:text-tu-green-600 transition-colors">
+                <a href={article.externalUrl} target="_blank" rel="noopener noreferrer" className="group">
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-tu-green-600 transition-colors flex items-start">
                     {article.title}
+                    <ExternalLink className="h-4 w-4 ml-1 mt-1 inline opacity-70" />
                   </h3>
-                </Link>
+                </a>
                 <p className="text-gray-600 mb-4">
                   {article.excerpt}
                 </p>
