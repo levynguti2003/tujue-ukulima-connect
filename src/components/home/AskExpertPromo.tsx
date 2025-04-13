@@ -26,7 +26,7 @@ const AskExpertPromo = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <Button asChild size="lg" className="bg-white text-tu-green-700 hover:bg-tu-green-100 group">
             <Link to="/ask-expert">
-              Ask an Expert Now
+              <span className="text-yellow-300 font-bold">Ask an Expert Now</span>
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

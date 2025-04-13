@@ -2,17 +2,21 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { Play, Download, Bookmark, User } from "lucide-react";
+import { Play, User } from "lucide-react";
 import { VideoItem } from "@/utils/videoData";
+import { useState } from "react";
+import VideoModal from "./VideoModal";
 
 interface VideoCardProps {
   video: VideoItem;
 }
 
 const VideoCard = ({ video }: VideoCardProps) => {
-  const handleWatchVideo = (e: React.MouseEvent, youtubeId: string) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleWatchVideo = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(`https://www.youtube.com/watch?v=${youtubeId}`, '_blank');
+    setIsModalOpen(true);
   };
 
   return (
@@ -26,23 +30,15 @@ const VideoCard = ({ video }: VideoCardProps) => {
         />
         <div 
           className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
-          onClick={(e) => handleWatchVideo(e, video.youtubeId)}
+          onClick={handleWatchVideo}
         >
-          <div className="bg-white rounded-full p-3 transform hover:scale-110 transition-transform">
+          <div className="bg-white rounded-full p-3 transform hover:scale-110 transition-transform cursor-pointer">
             <Play className="h-8 w-8 text-tu-green-700 ml-0.5" />
           </div>
         </div>
         <Badge className="absolute top-3 left-3 bg-tu-green-600">
           {video.category}
         </Badge>
-        <div className="absolute top-3 right-3 flex space-x-2">
-          <button
-            className="bg-white/80 backdrop-blur-sm p-1.5 rounded-full hover:bg-white transition-colors"
-            aria-label="Bookmark video"
-          >
-            <Bookmark className="h-4 w-4 text-tu-green-700" />
-          </button>
-        </div>
         <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
           {video.duration}
         </div>
@@ -64,13 +60,20 @@ const VideoCard = ({ video }: VideoCardProps) => {
         </div>
         <button 
           className="flex items-center text-tu-green-600 hover:text-tu-green-700"
-          onClick={(e) => handleWatchVideo(e, video.youtubeId)}
+          onClick={handleWatchVideo}
           aria-label="Watch video"
         >
           <Play className="h-4 w-4 mr-1" />
           <span>Watch</span>
         </button>
       </CardFooter>
+
+      <VideoModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        videoId={video.youtubeId}
+        title={video.title}
+      />
     </Card>
   );
 };
