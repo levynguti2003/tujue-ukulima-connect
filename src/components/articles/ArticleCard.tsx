@@ -2,7 +2,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { Calendar, User, Bookmark } from "lucide-react";
+import { Calendar, User, Bookmark, ExternalLink } from "lucide-react";
 
 export interface ArticleProps {
   id: number;
@@ -13,6 +13,7 @@ export interface ArticleProps {
   category: string;
   image: string;
   slug: string;
+  externalUrl?: string;
 }
 
 interface ArticleCardProps {
@@ -40,11 +41,20 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
       </div>
       
       <CardContent className="pt-6 flex-grow">
-        <Link to={article.slug}>
-          <h3 className="text-xl font-semibold mb-3 hover:text-tu-green-600 transition-colors">
-            {article.title}
-          </h3>
-        </Link>
+        {article.externalUrl ? (
+          <a href={article.externalUrl} target="_blank" rel="noopener noreferrer" className="group">
+            <h3 className="text-xl font-semibold mb-3 group-hover:text-tu-green-600 transition-colors flex items-start">
+              {article.title}
+              <ExternalLink className="h-4 w-4 ml-1 mt-1 inline opacity-70" />
+            </h3>
+          </a>
+        ) : (
+          <Link to={article.slug}>
+            <h3 className="text-xl font-semibold mb-3 hover:text-tu-green-600 transition-colors">
+              {article.title}
+            </h3>
+          </Link>
+        )}
         <p className="text-gray-600 mb-4">
           {article.excerpt}
         </p>

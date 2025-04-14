@@ -14,7 +14,8 @@ const allArticles: ArticleProps[] = [
     date: "April 8, 2025",
     category: "Pest Control",
     image: "https://images.unsplash.com/photo-1473973266408-ed4e00bb0eb1",
-    slug: "/articles/modern-approaches-to-pest-control"
+    slug: "/articles/modern-approaches-to-pest-control",
+    externalUrl: "https://www.researchgate.net/publication/358090833_Rice_Pest_Management_Using_Modern_Techniques_and_Novel_Approaches"
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ const allArticles: ArticleProps[] = [
     date: "April 5, 2025",
     category: "Smart Farming",
     image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
-    slug: "/articles/drone-technology-in-agriculture"
+    slug: "/articles/drone-technology-in-agriculture",
+    externalUrl: "https://www.croptracker.com/blog/drone-technology-in-agriculture.html"
   },
   {
     id: 3,
@@ -34,7 +36,8 @@ const allArticles: ArticleProps[] = [
     date: "April 2, 2025",
     category: "Soil Health",
     image: "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad",
-    slug: "/articles/improving-soil-health"
+    slug: "/articles/improving-soil-health",
+    externalUrl: "https://www.farmers.gov/conservation/soil-health"
   },
   {
     id: 4,
@@ -44,7 +47,8 @@ const allArticles: ArticleProps[] = [
     date: "March 30, 2025",
     category: "Drone Spraying",
     image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
-    slug: "/articles/benefits-of-precision-drone-spraying"
+    slug: "/articles/benefits-of-precision-drone-spraying",
+    externalUrl: "https://ohioline.osu.edu/factsheet/fabe-540"
   },
   {
     id: 5,
@@ -54,7 +58,8 @@ const allArticles: ArticleProps[] = [
     date: "March 27, 2025",
     category: "Climate-Smart Agriculture",
     image: "https://images.unsplash.com/photo-1602492225818-4056a71f6d5c",
-    slug: "/articles/adapting-rice-farming-to-climate-change"
+    slug: "/articles/adapting-rice-farming-to-climate-change",
+    externalUrl: "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2022.926059/full"
   },
   {
     id: 6,
@@ -64,7 +69,8 @@ const allArticles: ArticleProps[] = [
     date: "March 24, 2025",
     category: "Rice Farming",
     image: "https://images.unsplash.com/photo-1455853828816-0c301a011711",
-    slug: "/articles/essential-rice-farming-techniques"
+    slug: "/articles/essential-rice-farming-techniques",
+    externalUrl: "https://www.haifa-group.com/rice-fertilizer/crop-guide-rice-cultivation"
   },
   {
     id: 7,
@@ -74,7 +80,8 @@ const allArticles: ArticleProps[] = [
     date: "March 20, 2025",
     category: "Smart Farming",
     image: "https://images.unsplash.com/photo-1520453803296-c39eabe2dab4",
-    slug: "/articles/iot-applications-in-agriculture"
+    slug: "/articles/iot-applications-in-agriculture",
+    externalUrl: "https://www.iot-now.com/2024/10/30/147619-how-iot-is-transforming-yields-and-optimising-resources-in-agriculture/"
   },
   {
     id: 8,
@@ -84,7 +91,8 @@ const allArticles: ArticleProps[] = [
     date: "March 18, 2025",
     category: "Pest Control",
     image: "https://images.unsplash.com/photo-1535850452425-140ee4a8dbae",
-    slug: "/articles/organic-methods-for-pest-management"
+    slug: "/articles/organic-methods-for-pest-management",
+    externalUrl: "https://www.ams.usda.gov/sites/default/files/media/Organic%20Pest%20Management_FINAL.pdf"
   },
   {
     id: 9,
@@ -94,7 +102,8 @@ const allArticles: ArticleProps[] = [
     date: "March 15, 2025",
     category: "Soil Health",
     image: "https://images.unsplash.com/photo-1621113519399-8cbd4dc620f9",
-    slug: "/articles/soil-types-for-rice-production"
+    slug: "/articles/soil-types-for-rice-production",
+    externalUrl: "https://www.qld.gov.au/environment/land/management/soil/soil-testing/types"
   }
 ];
 
