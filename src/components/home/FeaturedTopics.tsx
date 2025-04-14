@@ -1,7 +1,10 @@
 
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import TopicContentModal from "./TopicContentModal";
+import { topicContents } from "@/utils/topicContentData";
 
 const topics = [
   {
@@ -79,6 +82,18 @@ const topics = [
 ];
 
 const FeaturedTopics = () => {
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLearnMore = (topicTitle: string) => {
+    setSelectedTopic(topicTitle);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -91,23 +106,41 @@ const FeaturedTopics = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {topics.map((topic, index) => (
-            <Link key={index} to={topic.link}>
-              <Card className={`h-full border ${topic.color} hover:shadow-md transition-shadow cursor-pointer`}>
-                <CardContent className="p-6">
-                  <div className={`${topic.iconBg} w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-4`}>
-                    {topic.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{topic.title}</h3>
-                  <p className="text-gray-600 mb-4">{topic.description}</p>
-                  <div className="flex items-center text-tu-green-600 font-medium">
+            <Card key={index} className={`h-full border ${topic.color} hover:shadow-md transition-shadow`}>
+              <CardContent className="p-6">
+                <div className={`${topic.iconBg} w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-4`}>
+                  {topic.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{topic.title}</h3>
+                <p className="text-gray-600 mb-4">{topic.description}</p>
+                <div className="flex items-center justify-between">
+                  <button 
+                    onClick={() => handleLearnMore(topic.title)}
+                    className="flex items-center text-tu-green-600 font-medium hover:text-tu-green-800 transition-colors cursor-pointer"
+                  >
                     <span>Learn more</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+                  </button>
+                  <Link 
+                    to={topic.link}
+                    className="text-gray-500 hover:text-gray-700 text-sm"
+                  >
+                    View articles
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
+
+        {selectedTopic && (
+          <TopicContentModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            title={selectedTopic}
+            content={topicContents[selectedTopic as keyof typeof topicContents] || ''}
+          />
+        )}
       </div>
     </section>
   );
