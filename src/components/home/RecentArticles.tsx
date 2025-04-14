@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Calendar, User, ExternalLink } from "lucide-react";
 
-// Updated article data with LinkedIn links
+// Updated article data with custom images and LinkedIn links
 const articles = [
   {
     id: 1,
@@ -14,7 +14,7 @@ const articles = [
     author: "Tujue Ukulima Team",
     date: "April 12, 2025",
     category: "Precision Agriculture",
-    image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
+    image: "/lovable-uploads/bf192a1c-c82c-46cb-8a1f-2b7412626798.png",
     externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7275044559825371136"
   },
   {
@@ -24,7 +24,7 @@ const articles = [
     author: "Michael Ochieng",
     date: "April 8, 2025",
     category: "Smart Farming",
-    image: "https://images.unsplash.com/photo-1520453803296-c39eabe2dab4",
+    image: "/lovable-uploads/ecaaf47f-9283-4ea3-83b0-40ae7da0f865.png",
     externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7266351263036960768"
   },
   {
@@ -34,7 +34,7 @@ const articles = [
     author: "Grace Wanjiku",
     date: "April 5, 2025",
     category: "Innovation",
-    image: "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad",
+    image: "/lovable-uploads/095ac6e9-06dc-4f78-abe6-0bbcaf0cb890.png",
     externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7265227993009049600"
   },
   {
@@ -44,7 +44,7 @@ const articles = [
     author: "Dr. Sarah Kamau",
     date: "April 2, 2025",
     category: "Drone Technology",
-    image: "https://images.unsplash.com/photo-1602492225818-4056a71f6d5c",
+    image: "/lovable-uploads/ee436a2c-49bc-4950-b7f1-49c60412df8f.png",
     externalUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7262377464142692352"
   }
 ];
