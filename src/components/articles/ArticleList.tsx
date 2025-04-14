@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import ArticleCard, { ArticleProps } from "./ArticleCard";
 import ArticleFilters from "./ArticleFilters";
 import { Button } from "@/components/ui/button";
 
-// Mock article data
+// Mock article data with new images
 const allArticles: ArticleProps[] = [
   {
     id: 1,
@@ -13,7 +12,7 @@ const allArticles: ArticleProps[] = [
     author: "Dr. Sarah Kamau",
     date: "April 8, 2025",
     category: "Pest Control",
-    image: "https://images.unsplash.com/photo-1473973266408-ed4e00bb0eb1",
+    image: "/lovable-uploads/361f76f4-ed78-460a-85f2-af5956e07c61.png",
     slug: "/articles/modern-approaches-to-pest-control",
     externalUrl: "https://www.researchgate.net/publication/358090833_Rice_Pest_Management_Using_Modern_Techniques_and_Novel_Approaches"
   },
@@ -24,7 +23,7 @@ const allArticles: ArticleProps[] = [
     author: "Michael Ochieng",
     date: "April 5, 2025",
     category: "Smart Farming",
-    image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
+    image: "/lovable-uploads/65bf3cfd-f8df-49a0-8173-c3ef64e14202.png",
     slug: "/articles/drone-technology-in-agriculture",
     externalUrl: "https://www.croptracker.com/blog/drone-technology-in-agriculture.html"
   },
@@ -35,7 +34,7 @@ const allArticles: ArticleProps[] = [
     author: "Grace Wanjiku",
     date: "April 2, 2025",
     category: "Soil Health",
-    image: "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad",
+    image: "/lovable-uploads/0296408b-5aa4-46d9-ad93-6504368db417.png",
     slug: "/articles/improving-soil-health",
     externalUrl: "https://www.farmers.gov/conservation/soil-health"
   },
@@ -46,7 +45,7 @@ const allArticles: ArticleProps[] = [
     author: "John Mwangi",
     date: "March 30, 2025",
     category: "Drone Spraying",
-    image: "https://images.unsplash.com/photo-1586818079715-22df28fee361",
+    image: "/lovable-uploads/8e762098-9784-4946-ba5a-edd23f41710f.png",
     slug: "/articles/benefits-of-precision-drone-spraying",
     externalUrl: "https://ohioline.osu.edu/factsheet/fabe-540"
   },
@@ -57,7 +56,7 @@ const allArticles: ArticleProps[] = [
     author: "Catherine Wambui",
     date: "March 27, 2025",
     category: "Climate-Smart Agriculture",
-    image: "https://images.unsplash.com/photo-1602492225818-4056a71f6d5c",
+    image: "/lovable-uploads/04ecc3fb-2370-45cc-93d5-77e51b3c1f9a.png",
     slug: "/articles/adapting-rice-farming-to-climate-change",
     externalUrl: "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2022.926059/full"
   },
@@ -68,7 +67,7 @@ const allArticles: ArticleProps[] = [
     author: "Peter Kariuki",
     date: "March 24, 2025",
     category: "Rice Farming",
-    image: "https://images.unsplash.com/photo-1455853828816-0c301a011711",
+    image: "/lovable-uploads/0fb0c8d3-4bbf-44d4-95f3-d59052807779.png",
     slug: "/articles/essential-rice-farming-techniques",
     externalUrl: "https://www.haifa-group.com/rice-fertilizer/crop-guide-rice-cultivation"
   },
@@ -79,7 +78,7 @@ const allArticles: ArticleProps[] = [
     author: "Dr. James Oduor",
     date: "March 20, 2025",
     category: "Smart Farming",
-    image: "https://images.unsplash.com/photo-1520453803296-c39eabe2dab4",
+    image: "/lovable-uploads/b8b7ef4a-5d02-4b91-bca8-1d3d332cd80b.png",
     slug: "/articles/iot-applications-in-agriculture",
     externalUrl: "https://www.iot-now.com/2024/10/30/147619-how-iot-is-transforming-yields-and-optimising-resources-in-agriculture/"
   },
@@ -90,7 +89,7 @@ const allArticles: ArticleProps[] = [
     author: "Rose Nyambura",
     date: "March 18, 2025",
     category: "Pest Control",
-    image: "https://images.unsplash.com/photo-1535850452425-140ee4a8dbae",
+    image: "/lovable-uploads/e77946cd-a4f1-4004-8233-f98a4caeb674.png",
     slug: "/articles/organic-methods-for-pest-management",
     externalUrl: "https://www.ams.usda.gov/sites/default/files/media/Organic%20Pest%20Management_FINAL.pdf"
   },
@@ -101,7 +100,7 @@ const allArticles: ArticleProps[] = [
     author: "David Mugo",
     date: "March 15, 2025",
     category: "Soil Health",
-    image: "https://images.unsplash.com/photo-1621113519399-8cbd4dc620f9",
+    image: "/lovable-uploads/db5ad088-4bd7-4d36-aa6f-57f01d31d43c.png",
     slug: "/articles/soil-types-for-rice-production",
     externalUrl: "https://www.qld.gov.au/environment/land/management/soil/soil-testing/types"
   }
