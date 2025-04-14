@@ -13,6 +13,14 @@ interface TopicContentModalProps {
 }
 
 const TopicContentModal = ({ isOpen, onClose, title, content }: TopicContentModalProps) => {
+  // Process content for better formatting
+  const formattedContent = content
+    .replace(/\n/g, '<br/>')
+    .replace(/●/g, '• ')
+    .replace(/\*\*/g, '<strong>')
+    .replace(/\*\*$/g, '</strong>')
+    .replace(/✅/g, '✓ ');
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] p-0 gap-0">
@@ -30,10 +38,10 @@ const TopicContentModal = ({ isOpen, onClose, title, content }: TopicContentModa
           </div>
           
           <ScrollArea className="h-[70vh]">
-            <div className="p-6 whitespace-pre-line">
+            <div className="p-6">
               <div 
                 className="prose prose-green max-w-none"
-                dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br/>').replace(/●/g, '• ') }}
+                dangerouslySetInnerHTML={{ __html: formattedContent }}
               />
             </div>
           </ScrollArea>
