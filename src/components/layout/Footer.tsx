@@ -7,7 +7,8 @@ import {
   Youtube, 
   Mail, 
   Phone, 
-  MapPin 
+  MapPin,
+  Linkedin
 } from 'lucide-react';
 import Logo from '../ui/Logo';
 
@@ -25,16 +26,13 @@ const Footer = () => {
               Empowering farmers through knowledge, innovation, and community.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" className="text-tu-green-100 hover:text-white" aria-label="Facebook">
+              <a href="https://www.facebook.com/share/KDYp665orgNNEkGs/" target="_blank" rel="noopener noreferrer" className="text-tu-green-100 hover:text-white" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com" className="text-tu-green-100 hover:text-white" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.linkedin.com/company/skyfield-aerotech/" target="_blank" rel="noopener noreferrer" className="text-tu-green-100 hover:text-white" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://instagram.com" className="text-tu-green-100 hover:text-white" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://youtube.com" className="text-tu-green-100 hover:text-white" aria-label="YouTube">
+              <a href="https://www.youtube.com/@skyfieldaerotech?si=EyUlfKF0i47St2Yz" target="_blank" rel="noopener noreferrer" className="text-tu-green-100 hover:text-white" aria-label="YouTube">
                 <Youtube className="h-5 w-5" />
               </a>
             </div>
@@ -102,14 +100,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-tu-green-200" />
-                <a href="tel:+254712345678" className="text-tu-green-100 hover:text-white transition-colors">
-                  +254 712 345 678
+                <a href="tel:0115037380" className="text-tu-green-100 hover:text-white transition-colors">
+                  0115037380
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-tu-green-200" />
-                <a href="mailto:info@tujueukulima.com" className="text-tu-green-100 hover:text-white transition-colors">
-                  info@tujueukulima.com
+                <a href="mailto:skyfield.kenya@gmail.com" className="text-tu-green-100 hover:text-white transition-colors">
+                  skyfield.kenya@gmail.com
                 </a>
               </li>
             </ul>
