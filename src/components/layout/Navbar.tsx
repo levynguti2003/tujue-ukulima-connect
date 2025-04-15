@@ -2,9 +2,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Menu, Search, X, ChevronDown, User, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -56,17 +55,8 @@ const Navbar = () => {
             </DropdownMenu>
           </div>
 
-          {/* Search, Profile, and Mobile Menu Button */}
+          {/* Profile and Mobile Menu Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-              <Input 
-                type="search" 
-                placeholder="Search..." 
-                className="pl-9 w-[200px] focus:w-[300px] transition-all" 
-              />
-            </div>
-            
             {isLoggedIn ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -159,15 +149,6 @@ const Navbar = () => {
             >
               Drone Services
             </Link>
-            
-            <div className="relative px-3 py-2">
-              <Search className="absolute left-5 top-5 h-4 w-4 text-gray-500" />
-              <Input 
-                type="search" 
-                placeholder="Search..." 
-                className="pl-9 w-full" 
-              />
-            </div>
             
             {isLoggedIn ? (
               <>

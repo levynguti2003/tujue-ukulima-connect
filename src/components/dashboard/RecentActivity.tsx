@@ -1,5 +1,8 @@
 
-import { Activity, BookOpen, Video, MessageSquare } from "lucide-react";
+import { Activity, BookOpen, Video, MessageSquare, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { videoData } from "@/utils/videoData";
 
 type ActivityType = "article" | "video" | "question";
 
@@ -11,41 +14,13 @@ interface ActivityItem {
   link: string;
 }
 
-const activities: ActivityItem[] = [
-  {
-    id: 1,
-    type: "article",
-    title: "Modern Approaches to Pest Control in Rice Farming",
-    date: "Today, 10:25 AM",
-    link: "/articles/modern-approaches-to-pest-control"
-  },
-  {
-    id: 2,
-    type: "video",
-    title: "Getting Started with Drone Spraying",
-    date: "Yesterday, 3:45 PM",
-    link: "/videos/getting-started-with-drone-spraying"
-  },
+const staticActivities: ActivityItem[] = [
   {
     id: 3,
     type: "question",
     title: "Asked: How can I improve soil drainage in my rice field?",
     date: "Apr 10, 2025",
     link: "/ask-expert"
-  },
-  {
-    id: 4,
-    type: "article",
-    title: "How Drone Technology is Revolutionizing Agriculture",
-    date: "Apr 8, 2025",
-    link: "/articles/drone-technology-in-agriculture"
-  },
-  {
-    id: 5,
-    type: "video",
-    title: "Soil Testing Techniques for Small-Scale Farmers",
-    date: "Apr 5, 2025",
-    link: "/videos/soil-testing-techniques"
   }
 ];
 
@@ -61,6 +36,34 @@ const getActivityIcon = (type: ActivityType) => {
 };
 
 const RecentActivity = () => {
+  const { currentUser } = useAuth();
+  
+  // Generate activity items from watched videos
+  const videoActivities = currentUser?.watchedVideos
+    ? currentUser.watchedVideos.map((videoId, index) => {
+        const videoInfo = videoData.find(video => video.id === videoId);
+        if (!videoInfo) return null;
+        
+        return {
+          id: index + 100, // unique ID
+          type: "video" as ActivityType,
+          title: `Watched: ${videoInfo.title}`,
+          date: new Date().toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: '2-digit', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          }),
+          link: `/videos#${videoId}`
+        };
+      }).filter(Boolean).slice(0, 5) // Take most recent 5
+    : [];
+
+  const allActivities = [...(videoActivities as ActivityItem[]), ...staticActivities]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
+
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4 flex items-center">
@@ -68,23 +71,34 @@ const RecentActivity = () => {
         Recent Activity
       </h2>
       
-      <div className="space-y-4">
-        {activities.map((item) => (
-          <a 
-            key={item.id} 
-            href={item.link}
-            className="flex items-start p-3 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors"
-          >
-            <div className="mr-3 mt-0.5">
-              {getActivityIcon(item.type)}
-            </div>
-            <div>
-              <div className="font-medium">{item.title}</div>
-              <div className="text-sm text-gray-500">{item.date}</div>
-            </div>
-          </a>
-        ))}
-      </div>
+      {allActivities.length > 0 ? (
+        <div className="space-y-4">
+          {allActivities.map((item) => (
+            <Link 
+              key={item.id} 
+              to={item.link}
+              className="flex items-start p-3 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors"
+            >
+              <div className="mr-3 mt-0.5">
+                {getActivityIcon(item.type)}
+              </div>
+              <div>
+                <div className="font-medium">{item.title}</div>
+                <div className="text-sm text-gray-500 flex items-center">
+                  <Clock className="h-3 w-3 mr-1" /> {item.date}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-8 text-gray-500">
+          <p>No recent activity found.</p>
+          <p className="text-sm mt-2">
+            Watch some videos or read articles to see your activity here.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

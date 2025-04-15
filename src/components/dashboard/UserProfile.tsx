@@ -7,30 +7,20 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Camera, User, Save } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-
-interface UserData {
-  name: string;
-  email: string;
-  phone: string;
-  location: string;
-  farmType: string;
-  bio: string;
-}
+import { useAuth } from "@/contexts/AuthContext";
 
 const UserProfile = () => {
-  const { toast } = useToast();
+  const { currentUser, updateUserProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState<UserData>({
-    name: "John Kamau",
-    email: "john.kamau@example.com",
-    phone: "+254 712 345 678",
-    location: "Nyeri County, Kenya",
-    farmType: "Mixed Farming (Rice, Maize, Poultry)",
-    bio: "Small-scale farmer with 5 years of experience, interested in modern farming techniques and sustainable agriculture practices."
-  });
   
-  const [formData, setFormData] = useState<UserData>({...userData});
+  const [formData, setFormData] = useState({
+    name: currentUser?.name || "",
+    email: currentUser?.email || "",
+    phone: currentUser?.phone || "",
+    location: currentUser?.location || "",
+    farmType: currentUser?.farmType || "",
+    bio: currentUser?.bio || ""
+  });
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -41,17 +31,19 @@ const UserProfile = () => {
   };
   
   const handleSave = () => {
-    setUserData({...formData});
+    updateUserProfile(formData);
     setIsEditing(false);
-    
-    toast({
-      title: "Profile Updated",
-      description: "Your profile information has been saved successfully.",
-    });
   };
   
   const handleCancel = () => {
-    setFormData({...userData});
+    setFormData({
+      name: currentUser?.name || "",
+      email: currentUser?.email || "",
+      phone: currentUser?.phone || "",
+      location: currentUser?.location || "",
+      farmType: currentUser?.farmType || "",
+      bio: currentUser?.bio || ""
+    });
     setIsEditing(false);
   };
   
@@ -68,7 +60,7 @@ const UserProfile = () => {
               <Avatar className="h-24 w-24 border-2 border-tu-green-200">
                 <AvatarImage src="/placeholder.svg" alt="Profile picture" />
                 <AvatarFallback className="bg-tu-green-600 text-2xl">
-                  <User className="h-10 w-10" />
+                  {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : <User className="h-10 w-10" />}
                 </AvatarFallback>
               </Avatar>
               {isEditing && (
@@ -119,7 +111,7 @@ const UserProfile = () => {
                     onChange={handleInputChange}
                   />
                 ) : (
-                  <div className="py-2">{userData.name}</div>
+                  <div className="py-2">{currentUser?.name || "Not provided"}</div>
                 )}
               </div>
               
@@ -132,9 +124,10 @@ const UserProfile = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    disabled
                   />
                 ) : (
-                  <div className="py-2">{userData.email}</div>
+                  <div className="py-2">{currentUser?.email || "Not provided"}</div>
                 )}
               </div>
               
@@ -148,7 +141,7 @@ const UserProfile = () => {
                     onChange={handleInputChange}
                   />
                 ) : (
-                  <div className="py-2">{userData.phone}</div>
+                  <div className="py-2">{currentUser?.phone || "Not provided"}</div>
                 )}
               </div>
               
@@ -162,7 +155,7 @@ const UserProfile = () => {
                     onChange={handleInputChange}
                   />
                 ) : (
-                  <div className="py-2">{userData.location}</div>
+                  <div className="py-2">{currentUser?.location || "Not provided"}</div>
                 )}
               </div>
             </div>
@@ -177,7 +170,7 @@ const UserProfile = () => {
                   onChange={handleInputChange}
                 />
               ) : (
-                <div className="py-2">{userData.farmType}</div>
+                <div className="py-2">{currentUser?.farmType || "Not provided"}</div>
               )}
             </div>
             
@@ -192,7 +185,7 @@ const UserProfile = () => {
                   onChange={handleInputChange}
                 />
               ) : (
-                <div className="py-2">{userData.bio}</div>
+                <div className="py-2">{currentUser?.bio || "Not provided"}</div>
               )}
             </div>
           </div>
