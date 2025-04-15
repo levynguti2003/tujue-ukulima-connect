@@ -4,15 +4,23 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const AboutEcosystem = () => {
   return (
-    <div className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-tu-green-700 mb-12">
+    <div 
+      className="py-16 bg-cover bg-center relative" 
+      style={{ 
+        backgroundImage: `url('/lovable-uploads/430d9ca7-f90f-44e4-8ae6-8d5f330b17d7.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className="text-3xl font-bold text-center text-white mb-12">
           Our Ecosystem
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Drone Services Card */}
-          <Card className="border-t-4 border-tu-blue-500 overflow-hidden card-hover">
+          <Card className="border-t-4 border-tu-blue-500 overflow-hidden card-hover bg-white/80">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <div className="p-4 bg-tu-blue-100 rounded-full mb-4">
@@ -28,7 +36,7 @@ const AboutEcosystem = () => {
           </Card>
 
           {/* Digital Marketplace Card */}
-          <Card className="border-t-4 border-tu-green-500 overflow-hidden card-hover">
+          <Card className="border-t-4 border-tu-green-500 overflow-hidden card-hover bg-white/80">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <div className="p-4 bg-tu-green-100 rounded-full mb-4">
@@ -44,7 +52,7 @@ const AboutEcosystem = () => {
           </Card>
 
           {/* Knowledge Hub Card */}
-          <Card className="border-t-4 border-tu-brown-500 overflow-hidden card-hover">
+          <Card className="border-t-4 border-tu-brown-500 overflow-hidden card-hover bg-white/80">
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <div className="p-4 bg-tu-brown-100 rounded-full mb-4">
