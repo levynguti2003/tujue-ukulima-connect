@@ -34,6 +34,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             <Link to="/" className="px-3 py-2 text-gray-700 hover:text-tu-green-600 transition-colors">Home</Link>
+            <Link to="/about-us" className="px-3 py-2 text-gray-700 hover:text-tu-green-600 transition-colors">About Us</Link>
             <Link to="/articles" className="px-3 py-2 text-gray-700 hover:text-tu-green-600 transition-colors">Articles</Link>
             <Link to="/videos" className="px-3 py-2 text-gray-700 hover:text-tu-green-600 transition-colors">Videos</Link>
             <Link to="/ask-expert" className="px-3 py-2 text-gray-700 hover:text-tu-green-600 transition-colors">Ask an Expert</Link>
@@ -113,6 +114,13 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Home
+            </Link>
+            <Link 
+              to="/about-us" 
+              className="block px-3 py-2 text-gray-700 hover:bg-tu-green-100 rounded-md"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About Us
             </Link>
             <Link 
               to="/articles" 

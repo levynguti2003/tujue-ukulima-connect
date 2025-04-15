@@ -15,6 +15,7 @@ import DashboardPage from "./pages/DashboardPage";
 import MarketplacePage from "./pages/MarketplacePage";
 import DroneServicesPage from "./pages/DroneServicesPage";
 import AuthPage from "./pages/AuthPage";
+import AboutUsPage from "./pages/AboutUsPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/videos" element={<VideosPage />} />
             <Route path="/ask-expert" element={<AskExpertPage />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
             <Route 
               path="/dashboard" 
               element={
