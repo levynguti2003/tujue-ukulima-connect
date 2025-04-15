@@ -2,7 +2,7 @@
 import { Activity, BookOpen, Video, MessageSquare, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { videoData } from "@/utils/videoData";
+import { allVideos } from "@/utils/videoData";
 
 type ActivityType = "article" | "video" | "question";
 
@@ -41,7 +41,7 @@ const RecentActivity = () => {
   // Generate activity items from watched videos
   const videoActivities = currentUser?.watchedVideos
     ? currentUser.watchedVideos.map((videoId, index) => {
-        const videoInfo = videoData.find(video => video.id === videoId);
+        const videoInfo = allVideos.find(video => String(video.id) === String(videoId));
         if (!videoInfo) return null;
         
         return {

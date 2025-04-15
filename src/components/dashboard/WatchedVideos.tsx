@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
-import { videoData } from "@/utils/videoData";
+import { allVideos } from "@/utils/videoData";
 import { Video, Play, CheckCircle, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
@@ -14,6 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+interface VideoItem {
+  id: number;
+  title: string;
+  topic: string;
+  duration: string;
+  thumbnail: string;
+}
+
 const WatchedVideos = () => {
   const { currentUser } = useAuth();
   const [filter, setFilter] = useState("all");
@@ -21,14 +29,17 @@ const WatchedVideos = () => {
   // Initialize videos from user's watched videos
   const watchedVideoIds = currentUser?.watchedVideos || [];
   
+  // Convert watchedVideoIds to strings for comparison
+  const stringWatchedIds = watchedVideoIds.map(id => String(id));
+  
   // Get all unique topics from videos
-  const allTopics = [...new Set(videoData.map(video => video.topic))];
+  const allTopics = [...new Set(allVideos.map(video => video.category))];
   
   // Filter videos based on selected topic
-  const filteredVideos = videoData.filter(video => {
-    if (!watchedVideoIds.includes(video.id)) return false;
+  const filteredVideos = allVideos.filter(video => {
+    if (!stringWatchedIds.includes(String(video.id))) return false;
     if (filter === "all") return true;
-    return video.topic === filter;
+    return video.category === filter;
   });
 
   if (!currentUser) {
@@ -115,7 +126,7 @@ const WatchedVideos = () => {
                 </div>
                 <div>
                   <div className="font-medium">{video.title}</div>
-                  <div className="text-sm text-gray-500">{video.topic}</div>
+                  <div className="text-sm text-gray-500">{video.category}</div>
                   <div className="text-xs text-gray-400 mt-1">Duration: {video.duration}</div>
                 </div>
               </Link>
