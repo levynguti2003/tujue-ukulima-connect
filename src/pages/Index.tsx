@@ -1,6 +1,7 @@
 
 import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/home/HeroSection";
+import VisionMission from "@/components/home/VisionMission";
 import FeaturedTopics from "@/components/home/FeaturedTopics";
 import RecentArticles from "@/components/home/RecentArticles";
 import FeaturedVideos from "@/components/home/FeaturedVideos";
@@ -12,6 +13,7 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <VisionMission />
       <FeaturedTopics />
       <RecentArticles />
       <FeaturedVideos />
