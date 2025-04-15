@@ -1,5 +1,5 @@
 
-import { Drone, ShoppingCart, BookOpen } from "lucide-react";
+import { Plane, ShoppingCart, BookOpen } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const AboutEcosystem = () => {
@@ -16,7 +16,7 @@ const AboutEcosystem = () => {
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <div className="p-4 bg-tu-blue-100 rounded-full mb-4">
-                  <Drone className="h-8 w-8 text-tu-blue-600" />
+                  <Plane className="h-8 w-8 text-tu-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-800">Drone Services</h3>
                 <p className="text-gray-600">
