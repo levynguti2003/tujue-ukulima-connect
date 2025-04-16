@@ -4,14 +4,14 @@ import { GraduationCap } from "lucide-react";
 const AboutHero = () => {
   return (
     <div 
-      className="relative bg-cover bg-center py-16 md:py-24" 
+      className="relative py-16 md:py-24" 
       style={{ 
-        backgroundImage: `url('/lovable-uploads/89a73814-5668-4e0b-8a36-5528e0a366d8.png')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/89a73814-5668-4e0b-8a36-5528e0a366d8.png')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-60"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <GraduationCap className="h-14 w-14 text-white mb-4" />

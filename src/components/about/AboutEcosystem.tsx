@@ -5,14 +5,14 @@ import { Card, CardContent } from "@/components/ui/card";
 const AboutEcosystem = () => {
   return (
     <div 
-      className="py-16 bg-cover bg-center relative" 
+      className="py-16 relative" 
       style={{ 
-        backgroundImage: `url('/lovable-uploads/064575c0-5998-43d6-9d3c-11c6eb6e0b09.png')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/064575c0-5998-43d6-9d3c-11c6eb6e0b09.png')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-60"></div>
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl font-bold text-center text-white mb-12">
           Our Ecosystem
