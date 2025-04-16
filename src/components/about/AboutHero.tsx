@@ -6,19 +6,19 @@ const AboutHero = () => {
     <div 
       className="relative bg-cover bg-center py-16 md:py-24" 
       style={{ 
-        backgroundImage: `url('/lovable-uploads/278bc257-1a79-4404-8301-46fba005a4d9.png')`,
+        backgroundImage: `url('/lovable-uploads/89a73814-5668-4e0b-8a36-5528e0a366d8.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <GraduationCap className="h-14 w-14 text-white mb-4" />
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Who We Are
           </h1>
-          <div className="bg-white/80 p-6 md:p-8 rounded-lg shadow-md">
+          <div className="bg-white/90 p-6 md:p-8 rounded-lg shadow-md">
             <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
               Skyfield Kenya is a forward-thinking agritech startup based in Mwea, Kenya, 
               revolutionizing agriculture through innovative technologies. We are committed 
