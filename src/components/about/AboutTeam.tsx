@@ -13,37 +13,37 @@ const teamMembers: TeamMember[] = [
     name: "Levy Nguti Mutongu",
     position: "CEO & Director",
     description: "Visionary leader and Mechatronics Engineer driving Skyfield's innovation, strategy, and partnerships.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/5a4a5170-0cd2-4f5b-8b07-19b0dded7d92.png"
   },
   {
     name: "Swabir M. Bwana",
     position: "Chief Financial Officer (CFO) & Director",
     description: "Financial strategist ensuring sustainable growth and resource management.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/7b32507d-7bf0-4603-84e5-c965162d7fda.png"
   },
   {
     name: "Adan Ali Wako",
     position: "Head of Information Technology & Director",
     description: "Oversees platform architecture, cyber security, and data-driven tech integration.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/16919357-9302-4435-b48e-e85f05a339c3.png"
   },
   {
     name: "Evans Mutegi",
     position: "Chief Operations Officer (COO)",
     description: "Ensures smooth field operations, logistics, and client delivery.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/c47ef054-f356-48c9-b1f5-c33032541c4d.png"
   },
   {
     name: "Granton Wanzofu",
     position: "Chief Technology Officer (CTO)",
     description: "Leads hardware and embedded systems development, including drone mechanics.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/3d78ac94-f76a-4f1e-9415-b9a90d27813a.png"
   },
   {
     name: "Victoria Wambui",
     position: "Chief Strategy & Marketing Officer (CSMO)",
     description: "Drives brand growth, customer engagement, and market expansion.",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/b9f519f0-54e4-4e3a-acda-082f81399faa.png"
   }
 ];
 
