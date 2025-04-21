@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import TopicContentModal from "./TopicContentModal";
 import { topicContents } from "@/utils/topicContentData";
+import CropVideosModal from "./CropVideosModal";
 
 const topics = [
   {
@@ -85,6 +86,9 @@ const FeaturedTopics = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // for crop videos modal
+  const [showCropVideos, setShowCropVideos] = useState(false);
+
   const handleLearnMore = (topicTitle: string) => {
     setSelectedTopic(topicTitle);
     setIsModalOpen(true);
@@ -121,12 +125,21 @@ const FeaturedTopics = () => {
                     <span>Learn more</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </button>
-                  <Link 
-                    to={topic.link}
-                    className="text-gray-500 hover:text-gray-700 text-sm"
-                  >
-                    View articles
-                  </Link>
+                  {topic.title === "Crop Production" ? (
+                    <button
+                      onClick={() => setShowCropVideos(true)}
+                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold"
+                    >
+                      Watch videos
+                    </button>
+                  ) : (
+                    <Link 
+                      to={topic.link}
+                      className="text-gray-500 hover:text-gray-700 text-sm"
+                    >
+                      View articles
+                    </Link>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -141,9 +154,15 @@ const FeaturedTopics = () => {
             content={topicContents[selectedTopic as keyof typeof topicContents] || ''}
           />
         )}
+
+        <CropVideosModal
+          open={showCropVideos}
+          onClose={() => setShowCropVideos(false)}
+        />
       </div>
     </section>
   );
 };
 
 export default FeaturedTopics;
+
