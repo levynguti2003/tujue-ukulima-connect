@@ -1,7 +1,9 @@
+
 import React, { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import VideoModal from "@/components/videos/VideoModal";
 
 type CropVideos = {
   [crop: string]: { title: string; url: string }[];
@@ -178,76 +180,92 @@ interface CropVideosModalProps {
 
 const CropVideosModal = ({ open, onClose }: CropVideosModalProps) => {
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null);
+  const [playVideo, setPlayVideo] = useState<{ id: string; title: string } | null>(null);
 
   return (
-    <Dialog open={open} onOpenChange={(val) => { if (!val) onClose(); }}>
-      <DialogContent className="max-w-2xl p-0 gap-0">
-        <div className="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-          <h2 className="text-xl font-bold text-tu-green-700">
-            Crop Production Videos
-          </h2>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClose}
-            className="h-8 w-8"
-          >
-            <span className="sr-only">Close</span> ×
-          </Button>
-        </div>
-        {!selectedCrop ? (
-          <ScrollArea className="max-h-[65vh]">
-            <div className="p-6 grid grid-cols-2 gap-3">
-              {cropNames.map((crop) => (
-                <Button
-                  key={crop}
-                  variant="outline"
-                  className="w-full flex items-center justify-between"
-                  onClick={() => setSelectedCrop(crop)}
-                >
-                  <span>{crop}</span>
-                  <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><polygon points="6,4 16,10 6,16"></polygon></svg>
-                </Button>
-              ))}
-            </div>
-          </ScrollArea>
-        ) : (
-          <ScrollArea className="max-h-[65vh]">
-            <div className="p-6">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="mb-2 p-0 text-tu-green-700 underline"
-                onClick={() => setSelectedCrop(null)}
-              >
-                ← Back to crop list
-              </Button>
-              <h3 className="mb-4 font-bold text-lg">
-                {selectedCrop} Videos
-              </h3>
-              <ul className="space-y-2">
-                {cropVideos[selectedCrop].map((vid, idx) => (
-                  <li key={vid.url} className="flex items-center gap-3">
-                    <img
-                      src={`https://img.youtube.com/vi/${getYoutubeId(vid.url)}/hqdefault.jpg`}
-                      alt={`Video ${idx + 1}`}
-                      className="w-24 h-16 object-cover rounded shrink-0"
-                    />
-                    <Button
-                      variant="ghost"
-                      className="text-left flex-1 justify-start hover:text-tu-green-700"
-                      onClick={() => window.open(vid.url, "_blank")}
-                    >
-                      {vid.title}
-                    </Button>
-                  </li>
+    <>
+      <Dialog open={open} onOpenChange={(val) => { if (!val) onClose(); }}>
+        <DialogContent className="max-w-2xl p-0 gap-0">
+          <div className="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
+            <h2 className="text-xl font-bold text-tu-green-700">
+              Crop Production Videos
+            </h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="h-8 w-8"
+            >
+              <span className="sr-only">Close</span> ×
+            </Button>
+          </div>
+          {!selectedCrop ? (
+            <ScrollArea className="max-h-[65vh]">
+              <div className="p-6 grid grid-cols-2 gap-3">
+                {cropNames.map((crop) => (
+                  <Button
+                    key={crop}
+                    variant="outline"
+                    className="w-full flex items-center justify-between"
+                    onClick={() => setSelectedCrop(crop)}
+                  >
+                    <span>{crop}</span>
+                    <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><polygon points="6,4 16,10 6,16"></polygon></svg>
+                  </Button>
                 ))}
-              </ul>
-            </div>
-          </ScrollArea>
-        )}
-      </DialogContent>
-    </Dialog>
+              </div>
+            </ScrollArea>
+          ) : (
+            <ScrollArea className="max-h-[65vh]">
+              <div className="p-6">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mb-2 p-0 text-tu-green-700 underline"
+                  onClick={() => setSelectedCrop(null)}
+                >
+                  ← Back to crop list
+                </Button>
+                <h3 className="mb-4 font-bold text-lg">
+                  {selectedCrop} Videos
+                </h3>
+                <ul className="space-y-2">
+                  {cropVideos[selectedCrop].map((vid, idx) => (
+                    <li key={vid.url} className="flex items-center gap-3">
+                      <img
+                        src={`https://img.youtube.com/vi/${getYoutubeId(vid.url)}/hqdefault.jpg`}
+                        alt={`Video ${idx + 1}`}
+                        className="w-24 h-16 object-cover rounded shrink-0"
+                      />
+                      <Button
+                        variant="ghost"
+                        className="text-left flex-1 justify-start hover:text-tu-green-700"
+                        onClick={() =>
+                          setPlayVideo({
+                            id: getYoutubeId(vid.url),
+                            title: vid.title,
+                          })
+                        }
+                      >
+                        Watch Video {idx + 1}
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollArea>
+          )}
+        </DialogContent>
+      </Dialog>
+      {playVideo && (
+        <VideoModal
+          isOpen={!!playVideo}
+          onClose={() => setPlayVideo(null)}
+          videoId={playVideo.id}
+          title={playVideo.title}
+        />
+      )}
+    </>
   );
 };
 
