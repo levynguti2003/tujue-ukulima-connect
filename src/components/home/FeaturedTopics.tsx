@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -6,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import TopicContentModal from "./TopicContentModal";
 import { topicContents } from "@/utils/topicContentData";
 import CropVideosModal from "./CropVideosModal";
+import AnimalVideosModal from "./AnimalVideosModal";
 
 const topics = [
   {
@@ -88,6 +88,8 @@ const FeaturedTopics = () => {
 
   // for crop videos modal
   const [showCropVideos, setShowCropVideos] = useState(false);
+  // for animal videos modal
+  const [showAnimalVideos, setShowAnimalVideos] = useState(false);
 
   const handleLearnMore = (topicTitle: string) => {
     setSelectedTopic(topicTitle);
@@ -132,6 +134,13 @@ const FeaturedTopics = () => {
                     >
                       Watch videos
                     </button>
+                  ) : topic.title === "Animal Production" ? (
+                    <button
+                      onClick={() => setShowAnimalVideos(true)}
+                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold"
+                    >
+                      Watch videos
+                    </button>
                   ) : (
                     <Link 
                       to={topic.link}
@@ -159,10 +168,14 @@ const FeaturedTopics = () => {
           open={showCropVideos}
           onClose={() => setShowCropVideos(false)}
         />
+
+        <AnimalVideosModal
+          open={showAnimalVideos}
+          onClose={() => setShowAnimalVideos(false)}
+        />
       </div>
     </section>
   );
 };
 
 export default FeaturedTopics;
-
