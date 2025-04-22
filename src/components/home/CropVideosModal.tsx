@@ -1,177 +1,10 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import VideoModal from "@/components/videos/VideoModal";
-
-type CropVideos = {
-  [crop: string]: { title: string; url: string }[];
-};
-
-const cropVideos: CropVideos = {
-  "Maize Production": [
-    { title: "Maize Video 1", url: "https://youtu.be/mZgSeChDyaY" },
-    { title: "Maize Video 2", url: "https://youtu.be/dtjnVRONL0k" },
-    { title: "Maize Video 3", url: "https://youtu.be/fz3JwTU82uA" },
-    { title: "Maize Video 4", url: "https://youtu.be/nfMLKP1nXK0" },
-    { title: "Maize Video 5", url: "https://youtu.be/qdpAYlv8d60" },
-    { title: "Maize Video 6", url: "https://youtu.be/R9pxFgJwxFE" },
-    { title: "Maize Video 7", url: "https://youtu.be/JOYwDUTOahU" },
-    { title: "Maize Video 8", url: "https://youtu.be/Deen3_bRV6A" },
-    { title: "Maize Video 9", url: "https://youtu.be/_cnmaJsM2rc" },
-    { title: "Maize Video 10", url: "https://youtu.be/T790s9VSIN4" },
-    { title: "Maize Video 11", url: "https://youtu.be/NjyOjR3O4Yk" },
-  ],
-  "Wheat Production": [
-    { title: "Wheat Video 1", url: "https://youtu.be/SJv8bHTq4mU" },
-    { title: "Wheat Video 2", url: "https://youtu.be/RYn_yUUpwSQ" },
-    { title: "Wheat Video 3", url: "https://youtu.be/AonJkhqCRwk" },
-    { title: "Wheat Video 4", url: "https://youtu.be/6ewdzIPyXzM" },
-    { title: "Wheat Video 5", url: "https://youtu.be/4NSRupPIJAw" },
-    { title: "Wheat Video 6", url: "https://youtu.be/kT1R7Hkps5M" },
-  ],
-  "Rice Production": [
-    { title: "Rice Video 1", url: "https://youtu.be/J_mMS3EkHok" },
-    { title: "Rice Video 2", url: "https://youtu.be/kT1R7Hkps5M" },
-    { title: "Rice Video 3", url: "https://youtu.be/4dxzlspJ1eg" },
-    { title: "Rice Video 4", url: "https://youtu.be/FW_bw9jdrlQ" },
-    { title: "Rice Video 5", url: "https://youtu.be/nQHjjmIVjTU" },
-    { title: "Rice Video 6", url: "https://youtu.be/-eBrAm64fpg" },
-  ],
-  "Soybeans": [
-    { title: "Soybeans Video 1", url: "https://youtu.be/xqAI3i0nkhw" },
-    { title: "Soybeans Video 2", url: "https://youtu.be/OApiO103-fs" },
-    { title: "Soybeans Video 3", url: "https://youtu.be/9kW5vm0yj40" },
-    { title: "Soybeans Video 4", url: "https://youtu.be/BQ1jV_qEK_0" },
-    { title: "Soybeans Video 5", url: "https://youtu.be/1olmtb3MpME" },
-    { title: "Soybeans Video 6", url: "https://youtu.be/5iGnpj2tVVc" },
-  ],
-  "Potatoes": [
-    { title: "Potatoes Video 1", url: "https://youtu.be/p13FS2LXmC8" },
-    { title: "Potatoes Video 2", url: "https://youtu.be/6_q_I5w8qOE" },
-    { title: "Potatoes Video 3", url: "https://youtu.be/h3CjEoT7yvA" },
-    { title: "Potatoes Video 4", url: "https://youtu.be/qgjgcEpdbzY" },
-    { title: "Potatoes Video 5", url: "https://youtu.be/u5joP2XNrzU" },
-    { title: "Potatoes Video 6", url: "https://youtu.be/nOqHVXtm3ec" },
-  ],
-  "Cassava": [
-    { title: "Cassava Video 1", url: "https://youtu.be/uAQiuge4SWE" },
-    { title: "Cassava Video 2", url: "https://youtu.be/Rj8uKXYMFbU" },
-    { title: "Cassava Video 3", url: "https://youtu.be/jmXMSDSSBno" },
-    { title: "Cassava Video 4", url: "https://youtu.be/4gDFN8A3EXA" },
-    { title: "Cassava Video 5", url: "https://youtu.be/MPQWRiCuQYk" },
-    { title: "Cassava Video 6", url: "https://youtu.be/H4EeIanZ1Lk" },
-  ],
-  "Tomatoes": [
-    { title: "Tomatoes Video 1", url: "https://youtu.be/FSFBPtRO4HU" },
-    { title: "Tomatoes Video 2", url: "https://youtu.be/nNi-mWj1rpE" },
-    { title: "Tomatoes Video 3", url: "https://youtu.be/OMIbtIZ2E-Q" },
-    { title: "Tomatoes Video 4", url: "https://youtu.be/woi4Q2LXby4" },
-    { title: "Tomatoes Video 5", url: "https://youtu.be/Rw0JjxdByjM" },
-    { title: "Tomatoes Video 6", url: "https://youtu.be/DWSlfQegLpU" },
-  ],
-  "Bananas": [
-    { title: "Bananas Video 1", url: "https://youtu.be/If9U6ME3ycQ" },
-    { title: "Bananas Video 2", url: "https://youtu.be/jyOnH6blEOU" },
-    { title: "Bananas Video 3", url: "https://youtu.be/d5JIwPUwXIk" },
-    { title: "Bananas Video 4", url: "https://youtu.be/_l7sak6Vlq8" },
-    { title: "Bananas Video 5", url: "https://youtu.be/PyomFUjH3Ug" },
-    { title: "Bananas Video 6", url: "https://www.youtube.com/live/Lm9wQ9YS41g" },
-  ],
-  "Sugarcane": [
-    { title: "Sugarcane Video 1", url: "https://youtu.be/ZfTIyrGQ8Fc" },
-    { title: "Sugarcane Video 2", url: "https://youtu.be/1FwYhAF7mf0" },
-    { title: "Sugarcane Video 3", url: "https://youtu.be/TTxYCQW5JYU" },
-    { title: "Sugarcane Video 4", url: "https://youtu.be/kNt11njEsgc" },
-    { title: "Sugarcane Video 5", url: "https://youtu.be/ow9c_hyNPOo" },
-    { title: "Sugarcane Video 6", url: "https://youtu.be/8UFLzMYxBuU" },
-    { title: "Sugarcane Video 7", url: "https://youtu.be/HaorlLuuOiQ" },
-  ],
-  "Coffee": [
-    { title: "Coffee Video 1", url: "https://youtu.be/vzGa9Wi-KwM" },
-    { title: "Coffee Video 2", url: "https://youtu.be/L7ahUGlB8S0" },
-    { title: "Coffee Video 3", url: "https://youtu.be/6skcgBvorDk" },
-    { title: "Coffee Video 4", url: "https://youtu.be/qCcrvFKyRos" },
-    { title: "Coffee Video 5", url: "https://youtu.be/-CdScpRVYjI" },
-    { title: "Coffee Video 6", url: "https://youtu.be/gDwbAiZZFiY" },
-    { title: "Coffee Video 7", url: "https://youtu.be/qJO00xcb_-A" },
-  ],
-  "Barley": [
-    { title: "Barley Video 1", url: "https://youtu.be/okfNv2Jgv0c" },
-    { title: "Barley Video 2", url: "https://youtu.be/c4VUZfgDGmY" },
-    { title: "Barley Video 3", url: "https://youtu.be/pQzx8EwisUk" },
-    { title: "Barley Video 4", url: "https://youtu.be/PZrDZdtonZc" },
-    { title: "Barley Video 5", url: "https://youtu.be/s9MhR3e3v6Q" },
-    { title: "Barley Video 6", url: "https://youtu.be/qlt3ny7t12A" },
-    { title: "Barley Video 7", url: "https://youtu.be/LAh9hiuZMw4" },
-  ],
-  "Sorghum": [
-    { title: "Sorghum Video 1", url: "https://youtu.be/LrcCOl9Tzbk" },
-    { title: "Sorghum Video 2", url: "https://youtu.be/sn3nf9ZDoB0" },
-    { title: "Sorghum Video 3", url: "https://youtu.be/VycEHReGyJc" },
-    { title: "Sorghum Video 4", url: "https://youtu.be/U4odgvVCblc" },
-    { title: "Sorghum Video 5", url: "https://youtu.be/Bk2pFz7woiA" },
-    { title: "Sorghum Video 6", url: "https://youtu.be/WbaBocL-Yyo" },
-    { title: "Sorghum Video 7", url: "https://youtu.be/o1loek4cpPQ" },
-    { title: "Sorghum Video 8", url: "https://youtu.be/BmdM93OFpps" },
-  ],
-  "Millet": [
-    { title: "Millet Video 1", url: "https://youtu.be/E1FQ3QcWHR4" },
-    { title: "Millet Video 2", url: "https://youtu.be/9XMv5C7t5gs" },
-    { title: "Millet Video 3", url: "https://youtu.be/m8cxzy4F_7Q" },
-    { title: "Millet Video 4", url: "https://youtu.be/Rn5O67fNaHk" },
-    { title: "Millet Video 5", url: "https://youtu.be/deHuvbPgtyw" },
-    { title: "Millet Video 6", url: "https://youtu.be/JAnK5qlsH8k" },
-  ],
-  "Cotton": [
-    { title: "Cotton Video 1", url: "https://youtu.be/eN-TqqBQOAk" },
-    { title: "Cotton Video 2", url: "https://youtu.be/UciWr-v2aws" },
-    { title: "Cotton Video 3", url: "https://youtu.be/2tuSifDu8Mo" },
-    { title: "Cotton Video 4", url: "https://youtu.be/QHgNoSYlhYs" },
-    { title: "Cotton Video 5", url: "https://youtu.be/VoDUWbGPvi4" },
-    { title: "Cotton Video 6", url: "https://youtu.be/BofeiKsE5pU" },
-    { title: "Cotton Video 7", url: "https://youtu.be/INNnV7srprs" },
-  ],
-  "Chickpeas": [
-    { title: "Chickpeas Video 1", url: "https://youtu.be/_EL8DL1N-lQ" },
-    { title: "Chickpeas Video 2", url: "https://youtu.be/enrZ8TJzEIs" },
-    { title: "Chickpeas Video 3", url: "https://youtu.be/UjzoyAu9mX0" },
-    { title: "Chickpeas Video 4", url: "https://youtu.be/lCl3Yq5OZjw" },
-    { title: "Chickpeas Video 5", url: "https://youtu.be/qNxxsb76tJw" },
-    { title: "Chickpeas Video 6", url: "https://youtu.be/fTyeKbEVO7M" },
-    { title: "Chickpeas Video 7", url: "https://youtu.be/Xq-Ag3627oc" },
-  ],
-  "Lentils": [
-    { title: "Lentils Video 1", url: "https://youtu.be/afBPBl7TJpM" },
-    { title: "Lentils Video 2", url: "https://youtu.be/z8Bph21JuAM" },
-    { title: "Lentils Video 3", url: "https://youtu.be/RQhEOMdBxS8" },
-    { title: "Lentils Video 4", url: "https://youtu.be/9X-jv6WVCeI" },
-    { title: "Lentils Video 5", url: "https://youtu.be/UdSMPtUCl8k" },
-    { title: "Lentils Video 6", url: "https://youtu.be/JWtY1Oi-XwI" },
-    { title: "Lentils Video 7", url: "https://youtu.be/JjbwRuQch3A" },
-    { title: "Lentils Video 8", url: "https://youtu.be/-xcbWsw18Zc" },
-  ],
-  "Onions": [
-    { title: "Onions Video 1", url: "https://youtu.be/r1iKZ8y2xS4" },
-    { title: "Onions Video 2", url: "https://youtu.be/7yw_R6wPi-k" },
-    { title: "Onions Video 3", url: "https://youtu.be/Ll3JEY87sQc" },
-    { title: "Onions Video 4", url: "https://youtu.be/CEP3GWY1v4o" },
-    { title: "Onions Video 5", url: "https://youtu.be/LXQNfjcZLv4" },
-    { title: "Onions Video 6", url: "https://youtu.be/5TAj6g6RB70" },
-    { title: "Onions Video 7", url: "https://youtu.be/DL2xzWsg4hw" },
-    { title: "Onions Video 8", url: "https://youtu.be/q7Y42IdEhgw" },
-  ],
-};
-
-const cropNames = Object.keys(cropVideos);
-
-function getYoutubeId(url: string) {
-  const match = url.match(
-    /(?:\/|%2F|youtu\.be\/|v=|\/v\/|watch\?v=|&v=|embed\/)([A-Za-z0-9_-]{11})/
-  );
-  return match ? match[1] : "";
-}
+import CropList from "./CropList";
+import CropVideoList from "./CropVideoList";
 
 interface CropVideosModalProps {
   open: boolean;
@@ -199,66 +32,19 @@ const CropVideosModal = ({ open, onClose }: CropVideosModalProps) => {
               <span className="sr-only">Close</span> ×
             </Button>
           </div>
+          
           {!selectedCrop ? (
-            <ScrollArea className="max-h-[65vh]">
-              <div className="p-6 grid grid-cols-2 gap-3">
-                {cropNames.map((crop) => (
-                  <Button
-                    key={crop}
-                    variant="outline"
-                    className="w-full flex items-center justify-between"
-                    onClick={() => setSelectedCrop(crop)}
-                  >
-                    <span>{crop}</span>
-                    <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                      <polygon points="6,4 16,10 6,16"></polygon>
-                    </svg>
-                  </Button>
-                ))}
-              </div>
-            </ScrollArea>
+            <CropList onSelectCrop={setSelectedCrop} />
           ) : (
-            <ScrollArea className="max-h-[65vh]">
-              <div className="p-6">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="mb-2 p-0 text-tu-green-700 underline"
-                  onClick={() => setSelectedCrop(null)}
-                >
-                  ← Back to crop list
-                </Button>
-                <h3 className="mb-4 font-bold text-lg">
-                  {selectedCrop} Videos
-                </h3>
-                <ul className="space-y-2">
-                  {cropVideos[selectedCrop].map((vid, idx) => (
-                    <li key={vid.url} className="flex items-center gap-3">
-                      <img
-                        src={`https://img.youtube.com/vi/${getYoutubeId(vid.url)}/hqdefault.jpg`}
-                        alt={`Video ${idx + 1}`}
-                        className="w-24 h-16 object-cover rounded shrink-0"
-                      />
-                      <Button
-                        variant="ghost"
-                        className="text-left flex-1 justify-start hover:text-tu-green-700"
-                        onClick={() =>
-                          setPlayVideo({
-                            id: getYoutubeId(vid.url),
-                            title: vid.title,
-                          })
-                        }
-                      >
-                        Watch Video {idx + 1}
-                      </Button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollArea>
+            <CropVideoList
+              selectedCrop={selectedCrop}
+              onBack={() => setSelectedCrop(null)}
+              onSelectVideo={(id, title) => setPlayVideo({ id, title })}
+            />
           )}
         </DialogContent>
       </Dialog>
+
       {playVideo && (
         <VideoModal
           isOpen={!!playVideo}
