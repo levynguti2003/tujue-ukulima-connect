@@ -85,6 +85,15 @@ const soilHealthVideos = [
   { title: "Soil Fertility 10", url: "https://youtu.be/L14woJZEJnk?si=yR926riwu4PKU5xG" },
 ];
 
+const topicVideosMap: Record<string, { title: string, url: string }[]> = {
+  "Crop Production": cropProductionVideos,
+  "Pest Control": pestControlVideos,
+  "Precision Agriculture": precisionAgVideos,
+  "Climate-Smart Agriculture": climateSmartVideos,
+  "Smart Farming": smartFarmingVideos,
+  "Soil Health": soilHealthVideos,
+};
+
 const topics = [
   {
     title: "Crop Production",
