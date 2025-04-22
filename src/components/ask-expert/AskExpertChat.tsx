@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { Send, Bot, User as UserIcon } from "lucide-react";
+import { Send, Bot, User as UserIcon, Key } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -26,6 +26,7 @@ const AskExpertChat = () => {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("perplexity_api_key") || "");
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -38,11 +39,29 @@ const AskExpertChat = () => {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   };
+
+  const saveApiKey = (key: string) => {
+    setApiKey(key);
+    localStorage.setItem("perplexity_api_key", key);
+    toast({
+      title: "API Key Saved",
+      description: "Your API key has been saved for this session",
+    });
+  };
   
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!input.trim()) return;
+
+    if (!apiKey) {
+      toast({
+        title: "API Key Required",
+        description: "Please enter your Perplexity API key to continue",
+        variant: "destructive"
+      });
+      return;
+    }
     
     // Add user message
     const userMessage: Message = {
@@ -56,48 +75,86 @@ const AskExpertChat = () => {
     setInput("");
     setIsTyping(true);
     
-    // Simulate bot response after a delay
-    setTimeout(() => {
-      const botResponses = [
-        "That's a great question! For optimal rice yields, maintaining consistent water levels is crucial, especially during the flowering stage. I recommend keeping water depth at 5-7cm during this period.",
-        "Based on your description, your crops might be affected by rice blast fungus. This is common in humid conditions. Consider using resistant varieties and ensure good drainage in your fields.",
-        "Drone spraying can significantly reduce chemical usage by 20-30% compared to traditional methods. The precision targeting also minimizes environmental impact and can be more cost-effective for fields larger than 5 acres.",
-        "For small-scale farming, I'd recommend starting with soil testing and crop rotation before investing in expensive technology. These practices can dramatically improve your yields at minimal cost.",
-        "Climate-smart agriculture techniques like mulching can help retain soil moisture during dry spells. This is especially important as weather patterns become less predictable."
-      ];
-      
-      const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+    try {
+      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-sonar-small-128k-online',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an agricultural expert assistant. Provide accurate, practical advice about farming, crops, livestock, and agricultural practices. Be precise and concise in your responses.'
+            },
+            {
+              role: 'user',
+              content: input
+            }
+          ],
+          temperature: 0.2,
+          top_p: 0.9,
+          max_tokens: 1000,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('API request failed');
+      }
+
+      const data = await response.json();
       
       const botMessage: Message = {
         id: `bot-${Date.now()}`,
-        content: randomResponse,
+        content: data.choices[0].message.content,
         sender: "bot",
         timestamp: new Date()
       };
       
       setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-      
       toast({
         title: "Expert Response",
         description: "You received a new response to your question",
       });
-    }, 1500);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to get response from the expert system",
+        variant: "destructive"
+      });
+      console.error('Error:', error);
+    } finally {
+      setIsTyping(false);
+    }
   };
   
   return (
     <Card className="flex flex-col h-[600px] shadow-md">
       {/* Chat header */}
-      <div className="bg-tu-green-700 text-white px-4 py-3 rounded-t-lg flex items-center">
-        <Avatar className="h-10 w-10 bg-white text-tu-green-700 mr-3">
-          <AvatarImage src="/placeholder.svg" alt="Expert Avatar" />
-          <AvatarFallback>
-            <Bot className="h-5 w-5" />
-          </AvatarFallback>
-        </Avatar>
-        <div>
-          <h3 className="font-semibold">Agricultural Expert</h3>
-          <p className="text-sm text-tu-green-100">Ask me any farming questions</p>
+      <div className="bg-tu-green-700 text-white px-4 py-3 rounded-t-lg flex items-center justify-between">
+        <div className="flex items-center">
+          <Avatar className="h-10 w-10 bg-white text-tu-green-700 mr-3">
+            <AvatarImage src="/placeholder.svg" alt="Expert Avatar" />
+            <AvatarFallback>
+              <Bot className="h-5 w-5" />
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <h3 className="font-semibold">Agricultural Expert</h3>
+            <p className="text-sm text-tu-green-100">Ask me any farming questions</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Input
+            type="password"
+            placeholder="Enter API Key"
+            value={apiKey}
+            onChange={(e) => saveApiKey(e.target.value)}
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 w-64"
+          />
+          <Key className="h-5 w-5 text-white/70" />
         </div>
       </div>
       
