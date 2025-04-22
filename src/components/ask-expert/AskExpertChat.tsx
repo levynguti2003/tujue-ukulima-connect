@@ -1,11 +1,9 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { Send, Bot, User as UserIcon, Key } from "lucide-react";
+import { Send, Bot, User as UserIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -26,7 +24,6 @@ const AskExpertChat = () => {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem("perplexity_api_key") || "");
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   
@@ -40,28 +37,10 @@ const AskExpertChat = () => {
     }
   };
 
-  const saveApiKey = (key: string) => {
-    setApiKey(key);
-    localStorage.setItem("perplexity_api_key", key);
-    toast({
-      title: "API Key Saved",
-      description: "Your API key has been saved for this session",
-    });
-  };
-  
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!input.trim()) return;
-
-    if (!apiKey) {
-      toast({
-        title: "API Key Required",
-        description: "Please enter your Perplexity API key to continue",
-        variant: "destructive"
-      });
-      return;
-    }
     
     // Add user message
     const userMessage: Message = {
@@ -79,7 +58,7 @@ const AskExpertChat = () => {
       const response = await fetch('https://api.perplexity.ai/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': `Bearer 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`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -114,10 +93,6 @@ const AskExpertChat = () => {
       };
       
       setMessages(prev => [...prev, botMessage]);
-      toast({
-        title: "Expert Response",
-        description: "You received a new response to your question",
-      });
     } catch (error) {
       toast({
         title: "Error",
@@ -133,28 +108,16 @@ const AskExpertChat = () => {
   return (
     <Card className="flex flex-col h-[600px] shadow-md">
       {/* Chat header */}
-      <div className="bg-tu-green-700 text-white px-4 py-3 rounded-t-lg flex items-center justify-between">
-        <div className="flex items-center">
-          <Avatar className="h-10 w-10 bg-white text-tu-green-700 mr-3">
-            <AvatarImage src="/placeholder.svg" alt="Expert Avatar" />
-            <AvatarFallback>
-              <Bot className="h-5 w-5" />
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <h3 className="font-semibold">Agricultural Expert</h3>
-            <p className="text-sm text-tu-green-100">Ask me any farming questions</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Input
-            type="password"
-            placeholder="Enter API Key"
-            value={apiKey}
-            onChange={(e) => saveApiKey(e.target.value)}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 w-64"
-          />
-          <Key className="h-5 w-5 text-white/70" />
+      <div className="bg-tu-green-700 text-white px-4 py-3 rounded-t-lg flex items-center">
+        <Avatar className="h-10 w-10 bg-white text-tu-green-700 mr-3">
+          <AvatarImage src="/placeholder.svg" alt="Expert Avatar" />
+          <AvatarFallback>
+            <Bot className="h-5 w-5" />
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <h3 className="font-semibold">Agricultural Expert</h3>
+          <p className="text-sm text-tu-green-100">Ask me any farming questions</p>
         </div>
       </div>
       
