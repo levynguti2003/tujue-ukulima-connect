@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
@@ -8,7 +7,6 @@ import CropVideosModal from "./CropVideosModal";
 import AnimalVideosModal from "./AnimalVideosModal";
 import TopicVideosModal from "./TopicVideosModal";
 
-// Video lists per topic (rest omitted for brevity, see below for usage)
 const cropProductionVideos = [
   { title: "Cattle", url: "https://youtu.be/OwNCbkIHBs4?si=xvu-qv53rZ56d5-E" },
   { title: "Cattle 2", url: "https://youtu.be/l0H5sVWt_dA?si=6LCIxonmXuELHlh2" },
@@ -16,7 +14,6 @@ const cropProductionVideos = [
   { title: "Cattle 4", url: "https://youtu.be/I0QGe3JK134?si=jmPBDyrWL0TEM4Eq" },
   { title: "Cattle 5", url: "https://youtu.be/cskOSWUx6h8?si=c4XPHB33l4gnV-LZ" },
   { title: "Cattle 6", url: "https://youtu.be/_7m28Q2ucEQ?si=Er-77GihHG1J7DP_" },
-  // ... rest of animal videos (for this topic use as per animal production set originally)
 ];
 
 const pestControlVideos = [
@@ -88,11 +85,9 @@ const soilHealthVideos = [
   { title: "Soil Fertility 10", url: "https://youtu.be/L14woJZEJnk?si=yR926riwu4PKU5xG" },
 ];
 
-// ... original topics array
 const topics = [
   {
     title: "Crop Production",
-    // ... rest omitted for brevity
     description: "Essential techniques for successful crop cultivation from planting to harvest",
     icon: "🌽",
     link: "/articles/crop-production",
@@ -168,22 +163,8 @@ const topics = [
 const FeaturedTopics = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // video modal state for all topics
   const [videosModal, setVideosModal] = useState<{ topic: string, open: boolean }>({ topic: '', open: false });
-
-  // Animal modal is handled by existing AnimalVideosModal
-
-  // Maps topic title to relevant videos for new modal
-  const topicVideosMap: Record<string, { title: string, url: string }[]> = {
-    "Crop Production": cropProductionVideos,
-    "Pest Control": pestControlVideos,
-    "Precision Agriculture": precisionAgVideos,
-    "Climate-Smart Agriculture": climateSmartVideos,
-    "Smart Farming": smartFarmingVideos,
-    "Soil Health": soilHealthVideos,
-    // Add others as needed
-  };
+  const [showCropVideos, setShowCropVideos] = useState(false);
 
   const handleLearnMore = (topicTitle: string) => {
     setSelectedTopic(topicTitle);
@@ -221,9 +202,14 @@ const FeaturedTopics = () => {
                     <span>Learn more</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </button>
-                  {/* Watch Videos button for relevant topics */}
-                  {(topic.title === "Crop Production" ||
-                    topic.title === "Pest Control" ||
+                  {topic.title === "Crop Production" ? (
+                    <button
+                      onClick={() => setShowCropVideos(true)}
+                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold transition-colors"
+                    >
+                      Watch videos
+                    </button>
+                  ) : (topic.title === "Pest Control" ||
                     topic.title === "Precision Agriculture" ||
                     topic.title === "Climate-Smart Agriculture" ||
                     topic.title === "Smart Farming" ||
@@ -255,7 +241,6 @@ const FeaturedTopics = () => {
             </Card>
           ))}
         </div>
-        {/* Topic Content Modal */}
         {selectedTopic && (
           <TopicContentModal
             isOpen={isModalOpen}
@@ -264,8 +249,10 @@ const FeaturedTopics = () => {
             content={topicContents[selectedTopic as keyof typeof topicContents] || ''}
           />
         )}
-
-        {/* General topic videos modal */}
+        <CropVideosModal
+          open={showCropVideos}
+          onClose={() => setShowCropVideos(false)}
+        />
         {videosModal.open && topicVideosMap[videosModal.topic] && videosModal.topic !== "Animal Production" && (
           <TopicVideosModal
             open={videosModal.open}
@@ -274,15 +261,12 @@ const FeaturedTopics = () => {
             videos={topicVideosMap[videosModal.topic]}
           />
         )}
-
-        {/* Animal production handled by existing AnimalVideosModal */}
         {videosModal.open && videosModal.topic === "Animal Production" && (
           <AnimalVideosModal
             open={videosModal.open}
             onClose={() => setVideosModal({ topic: '', open: false })}
           />
         )}
-
       </div>
     </section>
   );
