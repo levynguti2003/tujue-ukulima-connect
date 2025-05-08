@@ -8,6 +8,11 @@ interface ChatMessageProps {
 }
 
 const ChatMessage = ({ message }: ChatMessageProps) => {
+  // Ensure message.timestamp is a Date object
+  const timestamp = message.timestamp instanceof Date 
+    ? message.timestamp 
+    : new Date(message.timestamp);
+
   return (
     <div
       className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -37,7 +42,7 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
               message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'
             }`}
           >
-            {message.timestamp.toLocaleTimeString([], { 
+            {timestamp.toLocaleTimeString([], { 
               hour: '2-digit', 
               minute: '2-digit' 
             })}

@@ -5,3 +5,8 @@ export interface Message {
   sender: "user" | "bot";
   timestamp: Date;
 }
+
+export interface ChatHistoryState {
+  messages: Message[];
+  lastUpdated: Date;
+}
