@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -66,7 +67,7 @@ const AskExpertChat = () => {
           messages: [
             {
               role: 'system',
-              content: 'You are an agricultural expert assistant. Provide accurate, practical advice about farming, crops, livestock, and agricultural practices. Be precise and concise in your responses.'
+              content: 'You are an agricultural expert assistant at SkyField Kenya. Provide accurate, practical advice about farming, crops, livestock, and agricultural practices in Kenya and East Africa. Be precise, concise, and helpful in your responses. Focus on sustainable farming methods and locally appropriate solutions.'
             },
             {
               role: 'user',
@@ -80,7 +81,7 @@ const AskExpertChat = () => {
       });
 
       if (!response.ok) {
-        throw new Error('API request failed');
+        throw new Error(`API request failed with status ${response.status}`);
       }
 
       const data = await response.json();
@@ -94,12 +95,24 @@ const AskExpertChat = () => {
       
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
+      console.error('Error:', error);
+      
+      // Display error message but also provide a fallback response
       toast({
-        title: "Error",
-        description: "Failed to get response from the expert system",
+        title: "Connection Issue",
+        description: "We couldn't connect to our expert system. Please try again later.",
         variant: "destructive"
       });
-      console.error('Error:', error);
+      
+      // Add fallback message
+      const fallbackMessage: Message = {
+        id: `bot-fallback-${Date.now()}`,
+        content: "I'm sorry, but I'm having trouble connecting to our agricultural database right now. Please try asking your question again in a moment, or consider using the expert consultation form for personalized assistance.",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, fallbackMessage]);
     } finally {
       setIsTyping(false);
     }
@@ -150,7 +163,7 @@ const AskExpertChat = () => {
                     : 'bg-white border border-gray-200'
                 }`}
               >
-                <p>{message.content}</p>
+                <p className="whitespace-pre-line">{message.content}</p>
                 <div
                   className={`text-xs mt-1 ${
                     message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'

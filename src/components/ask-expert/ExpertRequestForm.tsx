@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { Mail } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -34,11 +35,13 @@ const formSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
 const ExpertRequestForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -49,21 +52,48 @@ const ExpertRequestForm = () => {
     },
   });
   
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values);
-      setIsSubmitting(false);
+    try {
+      // Format the email subject and body
+      const subject = `[SkyField] ${values.topic} Consultation Request`;
+      
+      // Format the body with all the form details
+      let body = `Hello SkyField Team,\n\n`;
+      body += `I'd like to request a consultation on ${values.topic}.\n\n`;
+      body += `My details:\n`;
+      body += `Name: ${values.name}\n`;
+      body += `Email: ${values.email}\n`;
+      body += `Phone: ${values.phone || "Not provided"}\n\n`;
+      body += `My question/issue:\n${values.message}\n\n`;
+      body += `Please contact me at your earliest convenience.\n\n`;
+      body += `Thank you,\n${values.name}`;
+      
+      // Encode the subject and body for the mailto link
+      const mailtoLink = `mailto:skyfield.kenya@gmail.com?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      
+      // Open the user's email client
+      window.open(mailtoLink, "_blank");
       
       toast({
-        title: "Request Submitted",
-        description: "An expert will respond to your query soon.",
+        title: "Email Client Opened",
+        description: "Please send the email in your mail application to complete your request.",
       });
       
       form.reset();
-    }, 1500);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem opening your email client. Please try again.",
+        variant: "destructive",
+      });
+      console.error("Email opening error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -181,7 +211,12 @@ const ExpertRequestForm = () => {
           />
           
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Submit Request"}
+            {isSubmitting ? "Opening Email..." : (
+              <>
+                <Mail className="mr-2 h-4 w-4" />
+                Send Request
+              </>
+            )}
           </Button>
         </form>
       </Form>
