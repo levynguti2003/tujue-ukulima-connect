@@ -2,12 +2,13 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bot } from "lucide-react";
+import { Bot, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Message, ChatHistoryState } from "./types";
 import { sendMessageToGemini, createMessage } from "./api";
 import ChatMessages from "./ChatMessages";
 import MessageInput from "./MessageInput";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const STORAGE_KEY = "skyfield-chat-history";
 const WELCOME_MESSAGE: Message = {
@@ -20,6 +21,8 @@ const WELCOME_MESSAGE: Message = {
 const AskExpertChat = () => {
   const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [isTyping, setIsTyping] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isRateLimited, setIsRateLimited] = useState(false);
   const { toast } = useToast();
 
   // Load chat history from localStorage on component mount
@@ -54,7 +57,32 @@ const AskExpertChat = () => {
     }
   }, [messages]);
 
+  // Reset rate limit status after a timeout
+  useEffect(() => {
+    if (isRateLimited) {
+      const timer = setTimeout(() => {
+        setIsRateLimited(false);
+        setError(null);
+      }, 5000); // Reset after 5 seconds
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isRateLimited]);
+
   const handleSendMessage = async (input: string) => {
+    // If we're rate limited, prevent sending more messages
+    if (isRateLimited) {
+      toast({
+        title: "Please wait",
+        description: "You're sending messages too quickly. Please wait a moment.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Clear any previous errors
+    setError(null);
+    
     // Add user message
     const userMessage = createMessage(input, "user");
     setMessages(prev => [...prev, userMessage]);
@@ -70,16 +98,24 @@ const AskExpertChat = () => {
     } catch (error) {
       console.error('Error:', error);
       
+      // Check for rate limiting errors
+      let errorMessage = "We couldn't connect to our expert system. Please try again later.";
+      if (error instanceof Error && error.message.includes("rate limit") || error instanceof Error && error.message.includes("too many messages")) {
+        errorMessage = error.message;
+        setIsRateLimited(true);
+        setError(errorMessage);
+      }
+      
       // Display error message
       toast({
         title: "Connection Issue",
-        description: "We couldn't connect to our expert system. Please try again later.",
+        description: errorMessage,
         variant: "destructive"
       });
       
       // Add fallback message
       const fallbackMessage = createMessage(
-        "I'm sorry, but I'm having trouble connecting to our agricultural database right now. Please try asking your question again in a moment, or consider using the expert consultation form for personalized assistance.",
+        "I'm sorry, but I'm having trouble connecting right now. Please wait a moment before asking your next question.",
         "bot"
       );
       
@@ -123,11 +159,19 @@ const AskExpertChat = () => {
         </button>
       </div>
       
+      {/* Rate limiting error alert */}
+      {error && (
+        <Alert variant="destructive" className="mx-4 mt-2 py-2">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="ml-2">{error}</AlertDescription>
+        </Alert>
+      )}
+      
       {/* Chat messages */}
       <ChatMessages messages={messages} isTyping={isTyping} />
       
       {/* Input area */}
-      <MessageInput onSendMessage={handleSendMessage} disabled={isTyping} />
+      <MessageInput onSendMessage={handleSendMessage} disabled={isTyping || isRateLimited} />
     </Card>
   );
 };
