@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +12,10 @@ interface Message {
   sender: "user" | "bot";
   timestamp: Date;
 }
+
+// Store API key in a constant - in production this should be stored in environment variables or a secure backend
+// This is only for development purposes
+const GEMINI_API_KEY = "AIzaSyAd3uOAk2Jw9zgyFBODJQejyqDonODNHD8";
 
 const AskExpertChat = () => {
   const [messages, setMessages] = useState<Message[]>([
@@ -56,27 +59,28 @@ const AskExpertChat = () => {
     setIsTyping(true);
     
     try {
-      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=' + GEMINI_API_KEY, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer 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`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.1-sonar-small-128k-online',
-          messages: [
+          contents: [
             {
-              role: 'system',
-              content: 'You are an agricultural expert assistant at SkyField Kenya. Provide accurate, practical advice about farming, crops, livestock, and agricultural practices in Kenya and East Africa. Be precise, concise, and helpful in your responses. Focus on sustainable farming methods and locally appropriate solutions.'
-            },
-            {
-              role: 'user',
-              content: input
+              role: "user",
+              parts: [
+                {
+                  text: "You are an agricultural expert assistant at SkyField Kenya. Provide accurate, practical advice about farming, crops, livestock, and agricultural practices in Kenya and East Africa. Be precise, concise, and helpful in your responses. Focus on sustainable farming methods and locally appropriate solutions. Now answer the following question: " + input
+                }
+              ]
             }
           ],
-          temperature: 0.2,
-          top_p: 0.9,
-          max_tokens: 1000,
+          generationConfig: {
+            temperature: 0.2,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 1024,
+          }
         }),
       });
 
@@ -86,9 +90,13 @@ const AskExpertChat = () => {
 
       const data = await response.json();
       
+      // Extract the response text from Gemini API
+      const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 
+        "I'm having trouble processing your request. Please try again.";
+      
       const botMessage: Message = {
         id: `bot-${Date.now()}`,
-        content: data.choices[0].message.content,
+        content: botResponse,
         sender: "bot",
         timestamp: new Date()
       };
