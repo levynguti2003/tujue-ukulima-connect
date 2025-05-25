@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
@@ -195,21 +194,21 @@ const FeaturedTopics = () => {
         }}
       />
       
-      {/* Lighter Gradient Overlay for Better Background Visibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/65 to-white/75"></div>
+      {/* Minimal Overlay for 99% Image Visibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-white/10"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-3 text-gray-900">
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-3 text-white drop-shadow-lg">
           Featured Topics
         </h2>
-        <p className="text-gray-800 text-center mb-8 max-w-2xl mx-auto font-medium">
+        <p className="text-white text-center mb-8 max-w-2xl mx-auto font-medium drop-shadow-lg">
           Explore our comprehensive knowledge base on these important agricultural topics
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {topics.map((topic, index) => (
-            <Card key={index} className={`h-full border ${topic.color} hover:shadow-lg transition-all duration-300 backdrop-blur-sm bg-white/95`}>
+            <Card key={index} className={`h-full border ${topic.color} hover:shadow-lg transition-all duration-300 backdrop-blur-sm bg-white/98`}>
               <CardContent className="p-6">
                 <div className={`${topic.iconBg} w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-4`}>
                   {topic.icon}
