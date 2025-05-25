@@ -2,23 +2,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { 
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import Logo from '../ui/Logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Mock toggle login for demo purposes
-  const toggleLogin = () => setIsLoggedIn(!isLoggedIn);
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -54,36 +48,6 @@ const Navbar = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-
-          {/* Profile and Mobile Menu Button */}
-          <div className="hidden md:flex items-center space-x-4">
-            {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="rounded-full p-0 h-9 w-9 overflow-hidden">
-                    <Avatar>
-                      <AvatarFallback className="bg-tu-green-500 text-white">JD</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem asChild>
-                    <Link to="/dashboard" className="w-full cursor-pointer flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={toggleLogin} className="flex items-center cursor-pointer">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button onClick={toggleLogin} variant="default">Login</Button>
-            )}
           </div>
           
           {/* Mobile menu button */}
@@ -157,38 +121,6 @@ const Navbar = () => {
             >
               Drone Services
             </Link>
-            
-            {isLoggedIn ? (
-              <>
-                <Link
-                  to="/dashboard"
-                  className="block px-3 py-2 text-gray-700 hover:bg-tu-green-100 rounded-md"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={() => {
-                    toggleLogin();
-                    setIsMenuOpen(false);
-                  }}
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-tu-green-100 rounded-md"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <Button 
-                onClick={() => {
-                  toggleLogin();
-                  setIsMenuOpen(false);
-                }} 
-                variant="default"
-                className="w-full mt-2"
-              >
-                Login
-              </Button>
-            )}
           </div>
         </div>
       )}

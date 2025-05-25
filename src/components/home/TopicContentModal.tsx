@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface TopicContentModalProps {
   isOpen: boolean;
@@ -147,11 +148,11 @@ const TopicContentModal = ({ isOpen, onClose, title, content }: TopicContentModa
                   Join thousands of farmers who are already transforming their agricultural practices with modern techniques.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button variant="secondary" className="bg-white text-tu-green-700 hover:bg-gray-100">
-                    Explore More Articles
+                  <Button variant="secondary" className="bg-white text-tu-green-700 hover:bg-gray-100" asChild>
+                    <Link to="/articles">Explore More Articles</Link>
                   </Button>
-                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
-                    Watch Related Videos
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                    <Link to="/videos">Watch Related Videos</Link>
                   </Button>
                 </div>
               </div>
