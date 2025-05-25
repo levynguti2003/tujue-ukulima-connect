@@ -185,24 +185,36 @@ const FeaturedTopics = () => {
   };
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-3">
+    <section className="py-12 relative overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+        }}
+      />
+      
+      {/* Gradient Overlay for Better Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/95"></div>
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-3 text-gray-800">
           Featured Topics
         </h2>
-        <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
+        <p className="text-gray-700 text-center mb-8 max-w-2xl mx-auto">
           Explore our comprehensive knowledge base on these important agricultural topics
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {topics.map((topic, index) => (
-            <Card key={index} className={`h-full border ${topic.color} hover:shadow-md transition-shadow`}>
+            <Card key={index} className={`h-full border ${topic.color} hover:shadow-lg transition-all duration-300 backdrop-blur-sm bg-white/90`}>
               <CardContent className="p-6">
                 <div className={`${topic.iconBg} w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-4`}>
                   {topic.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{topic.title}</h3>
-                <p className="text-gray-600 mb-4">{topic.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">{topic.title}</h3>
+                <p className="text-gray-700 mb-4">{topic.description}</p>
                 <div className="flex items-center justify-between">
                   <button 
                     onClick={() => handleLearnMore(topic.title)}
@@ -214,7 +226,7 @@ const FeaturedTopics = () => {
                   {topic.title === "Crop Production" ? (
                     <button
                       onClick={() => setShowCropVideos(true)}
-                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold transition-colors"
+                      className="text-gray-600 hover:text-tu-green-700 text-sm font-semibold transition-colors"
                     >
                       Watch videos
                     </button>
@@ -226,21 +238,21 @@ const FeaturedTopics = () => {
                   ) ? (
                     <button
                       onClick={() => setVideosModal({ topic: topic.title, open: true })}
-                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold transition-colors"
+                      className="text-gray-600 hover:text-tu-green-700 text-sm font-semibold transition-colors"
                     >
                       Watch videos
                     </button>
                   ) : topic.title === "Animal Production" ? (
                     <button
                       onClick={() => setVideosModal({ topic: topic.title, open: true })}
-                      className="text-gray-500 hover:text-tu-green-700 text-sm font-semibold transition-colors"
+                      className="text-gray-600 hover:text-tu-green-700 text-sm font-semibold transition-colors"
                     >
                       Watch videos
                     </button>
                   ) : (
                     <button
                       disabled
-                      className="text-gray-300 text-sm font-semibold cursor-not-allowed"
+                      className="text-gray-400 text-sm font-semibold cursor-not-allowed"
                     >
                       Watch videos
                     </button>
@@ -250,6 +262,7 @@ const FeaturedTopics = () => {
             </Card>
           ))}
         </div>
+        
         {selectedTopic && (
           <TopicContentModal
             isOpen={isModalOpen}
