@@ -10,20 +10,20 @@ const HeroSection = () => {
   
   const heroImages = [
     {
-      url: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-      alt: "African farmers working in green agricultural fields"
+      url: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b",
+      alt: "African farmer working in green crop fields with modern farming techniques"
     },
     {
-      url: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d", 
-      alt: "African livestock grazing in natural farmland"
+      url: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449", 
+      alt: "Smart agriculture technology with African farmers using modern equipment"
     },
     {
-      url: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
-      alt: "Traditional African farming with cattle in mountainous terrain"
+      url: "https://images.unsplash.com/photo-1500595046743-cd271d694d30",
+      alt: "African livestock farming with cattle grazing in agricultural fields"
     },
     {
-      url: "https://images.unsplash.com/photo-1465379944081-7f47de8d74ac",
-      alt: "African cattle farming in forest agricultural setting"
+      url: "https://images.unsplash.com/photo-1592839708495-5c5b48c76d3d",
+      alt: "Traditional African farming with diverse crops and sustainable agriculture practices"
     }
   ];
 
@@ -32,7 +32,7 @@ const HeroSection = () => {
 
     const autoplay = setInterval(() => {
       api.scrollNext();
-    }, 5000);
+    }, 4000);
 
     return () => clearInterval(autoplay);
   }, [api]);
@@ -48,27 +48,22 @@ const HeroSection = () => {
         }}
         plugins={[
           Autoplay({
-            delay: 5000,
+            delay: 4000,
           }),
         ]}
       >
         <CarouselContent className="-ml-0">
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="pl-0 min-w-0">
-              <div className="relative bg-gradient-to-r from-tu-green-700 via-tu-green-600 to-tu-green-500 h-[500px] md:h-[600px]">
+              <div className="relative h-[500px] md:h-[600px] overflow-hidden">
                 <div 
-                  className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
                   style={{
                     backgroundImage: `url('${image.url}')`,
-                    opacity: 0.99
                   }}
                 ></div>
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-tu-green-900/80 to-transparent"
-                  style={{
-                    maskImage: "radial-gradient(circle at 30% 50%, black 0%, transparent 70%)"
-                  }}
-                ></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
               </div>
             </CarouselItem>
           ))}
