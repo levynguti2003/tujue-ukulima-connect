@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
@@ -24,6 +23,14 @@ const HeroSection = () => {
     {
       url: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
       alt: "Modern greenhouse agriculture with advanced farming technology"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1563514227147-6d2ff665b8f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      alt: "Beautiful tea plantation with rolling green hills and organized tea bushes"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1589922637151-b5adbe1c7b31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      alt: "Agricultural automation with robotic farming equipment and precision agriculture"
     }
   ];
 
@@ -33,7 +40,7 @@ const HeroSection = () => {
     // Clear any existing intervals to prevent conflicts
     const autoplay = setInterval(() => {
       api.scrollNext();
-    }, 8000); // Increased delay to ensure all images are visible
+    }, 12000); // Increased delay to 12 seconds (10 + 2 seconds as requested)
 
     return () => clearInterval(autoplay);
   }, [api]);
@@ -46,11 +53,11 @@ const HeroSection = () => {
         opts={{
           align: "start",
           loop: true,
-          duration: 30, // Slower transition duration
+          duration: 50, // Slower transition duration for smoother sliding
         }}
         plugins={[
           Autoplay({
-            delay: 8000, // Increased delay to 8 seconds
+            delay: 12000, // Increased delay to 12 seconds for more viewing time
             stopOnInteraction: false,
             stopOnMouseEnter: false,
           }),
