@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
@@ -14,8 +13,8 @@ const HeroSection = () => {
       alt: "African farmer working in green crop fields with modern farming techniques"
     },
     {
-      url: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449", 
-      alt: "Smart agriculture technology with African farmers using modern equipment"
+      url: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff", 
+      alt: "Modern agricultural technology and smart farming equipment in African agriculture"
     },
     {
       url: "https://images.unsplash.com/photo-1500595046743-cd271d694d30",
@@ -32,7 +31,7 @@ const HeroSection = () => {
 
     const autoplay = setInterval(() => {
       api.scrollNext();
-    }, 4000);
+    }, 6000);
 
     return () => clearInterval(autoplay);
   }, [api]);
@@ -48,7 +47,7 @@ const HeroSection = () => {
         }}
         plugins={[
           Autoplay({
-            delay: 4000,
+            delay: 6000,
           }),
         ]}
       >
