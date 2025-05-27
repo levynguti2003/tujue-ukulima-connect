@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 
 const stats = [
@@ -117,7 +118,7 @@ const StatisticsSection = () => {
               key={index} 
               className="text-center group"
             >
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <div className="bg-white/5 backdrop-blur-none rounded-xl p-4 border border-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2 tabular-nums">
                   {Math.floor(counts[index]).toLocaleString()}{stat.suffix}
                 </div>

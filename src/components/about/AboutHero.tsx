@@ -6,7 +6,7 @@ const AboutHero = () => {
     <div 
       className="relative py-16 md:py-24" 
       style={{ 
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/89a73814-5668-4e0b-8a36-5528e0a366d8.png')`,
+        backgroundImage: `url('/lovable-uploads/296425d2-d7ab-4a26-8bd7-7e7e2097a858.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
