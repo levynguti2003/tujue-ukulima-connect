@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 
 const stats = [
@@ -108,31 +107,18 @@ const StatisticsSection = () => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/60"></div>
-      
-      {/* Gradient overlay for additional styling */}
-      <div className="absolute inset-0 bg-gradient-to-r from-tu-green-900/80 via-tu-green-800/60 to-tu-green-700/80"></div>
+      {/* Minimal overlay for better contrast while keeping image visible */}
+      <div className="absolute inset-0 bg-black/20"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-            ACTION 4 PRESERVATION
-          </h2>
-          <p className="text-lg md:text-xl text-white/90 mb-2">
-            Sustainable Solutions for a Sustainable Planet
-          </p>
-          <div className="w-24 h-1 bg-white mx-auto rounded-full"></div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div 
               key={index} 
               className="text-center group"
             >
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-3 tabular-nums">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2 tabular-nums">
                   {Math.floor(counts[index]).toLocaleString()}{stat.suffix}
                 </div>
                 <div className="text-white/90 font-medium text-sm md:text-base">
@@ -141,14 +127,6 @@ const StatisticsSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center">
-          <div className="inline-block bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4 border border-white/20">
-            <h3 className="text-2xl md:text-3xl font-heading font-bold text-white">
-              TOGETHER, WE CAN MAKE A DIFFERENCE.
-            </h3>
-          </div>
         </div>
 
         {/* Floating elements for visual enhancement */}
