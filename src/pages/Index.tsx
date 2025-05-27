@@ -2,6 +2,7 @@
 import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/home/HeroSection";
 import VisionMission from "@/components/home/VisionMission";
+import VideoSection from "@/components/home/VideoSection";
 import FeaturedTopics from "@/components/home/FeaturedTopics";
 import RecentArticles from "@/components/home/RecentArticles";
 import FeaturedVideos from "@/components/home/FeaturedVideos";
@@ -14,6 +15,7 @@ const Index = () => {
     <Layout>
       <HeroSection />
       <VisionMission />
+      <VideoSection />
       <FeaturedTopics />
       <RecentArticles />
       <FeaturedVideos />
