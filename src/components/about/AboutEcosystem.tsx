@@ -7,7 +7,7 @@ const AboutEcosystem = () => {
     <div 
       className="py-16 relative" 
       style={{ 
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/064575c0-5998-43d6-9d3c-11c6eb6e0b09.png')`,
+        backgroundImage: `url('/lovable-uploads/5d75101e-ccca-4afd-97f0-4ed7d4e61dbd.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

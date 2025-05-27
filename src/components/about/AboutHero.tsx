@@ -15,9 +15,6 @@ const AboutHero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <GraduationCap className="h-14 w-14 text-white mb-4" />
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Who We Are
-          </h1>
           <div className="bg-white/90 p-6 md:p-8 rounded-lg shadow-md">
             <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
               Skyfield Kenya is a forward-thinking agritech startup based in Mwea, Kenya, 
