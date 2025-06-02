@@ -77,26 +77,39 @@ const HeroSection = () => {
       </Carousel>
 
       <div className="absolute inset-0 z-10">
-        <div className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-28 h-full flex items-center">
-          <div className="max-w-3xl">
-            <span className="bg-white/20 text-white px-2 sm:px-3 md:px-4 py-1 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 md:mb-6 inline-block backdrop-blur-sm">
+        <div className="container mx-auto px-3 sm:px-4 h-full flex flex-col justify-between py-6 sm:py-8 md:py-16 lg:py-20 xl:py-28">
+          {/* Top spacer for mobile balance */}
+          <div className="flex-1 sm:flex-none"></div>
+          
+          {/* Main content - centered but with better mobile distribution */}
+          <div className="flex-2 flex flex-col justify-center max-w-3xl">
+            <span className="bg-white/20 text-white px-2 sm:px-3 md:px-4 py-1 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 md:mb-6 inline-block backdrop-blur-sm animate-fade-in transform transition-all duration-700 hover:scale-105">
               Kenya's Premier Agricultural Knowledge Platform
             </span>
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-heading font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in text-white drop-shadow-lg leading-tight">
-              Empowering Farmers Through Knowledge, Innovation, and Community
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-heading font-bold mb-3 sm:mb-4 md:mb-6 text-white drop-shadow-lg leading-tight animate-fade-in transform transition-all duration-1000 hover:text-tu-green-100" style={{animationDelay: "0.2s"}}>
+              <span className="inline-block animate-fade-in" style={{animationDelay: "0.3s"}}>Empowering</span>{" "}
+              <span className="inline-block animate-fade-in text-tu-green-200" style={{animationDelay: "0.5s"}}>Farmers</span>{" "}
+              <span className="inline-block animate-fade-in" style={{animationDelay: "0.7s"}}>Through</span><br className="hidden sm:block" />
+              <span className="inline-block animate-fade-in" style={{animationDelay: "0.9s"}}>Knowledge,</span>{" "}
+              <span className="inline-block animate-fade-in text-tu-green-200" style={{animationDelay: "1.1s"}}>Innovation,</span>{" "}
+              <span className="inline-block animate-fade-in" style={{animationDelay: "1.3s"}}>and</span>{" "}
+              <span className="inline-block animate-fade-in text-tu-green-200" style={{animationDelay: "1.5s"}}>Community</span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 mb-4 sm:mb-6 md:mb-8 max-w-2xl animate-fade-in text-white drop-shadow-md leading-relaxed" style={{animationDelay: "0.1s"}}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 mb-4 sm:mb-6 md:mb-8 max-w-2xl text-white drop-shadow-md leading-relaxed animate-fade-in transform transition-all duration-1000" style={{animationDelay: "1.7s"}}>
               Access farming expertise, connect with agricultural specialists, and discover the latest innovations in smart farming with Tujue Ukulima.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{animationDelay: "0.2s"}}>
-              <Button asChild size="lg" className="bg-white text-tu-green-700 hover:bg-tu-green-100 w-full sm:w-auto text-sm sm:text-base">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in transform transition-all duration-1000" style={{animationDelay: "1.9s"}}>
+              <Button asChild size="default" className="bg-white text-tu-green-700 hover:bg-tu-green-100 w-full sm:w-auto text-sm sm:text-base px-6 py-3 sm:px-8 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <Link to="/articles">Explore Resources</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-tu-green-700 w-full sm:w-auto text-sm sm:text-base transition-all duration-300">
+              <Button asChild size="default" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-tu-green-700 w-full sm:w-auto text-sm sm:text-base px-6 py-3 sm:px-8 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <Link to="/ask-expert">Ask an Expert</Link>
               </Button>
             </div>
           </div>
+          
+          {/* Bottom spacer for mobile balance */}
+          <div className="flex-1 sm:flex-none"></div>
         </div>
       </div>
       
