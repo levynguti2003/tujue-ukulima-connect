@@ -35,7 +35,7 @@ const HeroSection = () => {
   }, [api]);
 
   return (
-    <div className="relative text-white overflow-hidden">
+    <div className="relative text-white overflow-hidden h-screen">
       <Carousel 
         setApi={setApi}
         className="w-full h-full"
@@ -55,7 +55,7 @@ const HeroSection = () => {
         <CarouselContent className="-ml-0">
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="pl-0 min-w-0">
-              <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[650px] overflow-hidden">
+              <div className="relative h-screen overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
                   style={{
@@ -92,7 +92,7 @@ const HeroSection = () => {
               <Button asChild size="lg" className="bg-white text-tu-green-700 hover:bg-tu-green-100 w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/articles">Explore Resources</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto text-sm sm:text-base">
+              <Button asChild size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-tu-green-700 w-full sm:w-auto text-sm sm:text-base transition-all duration-300">
                 <Link to="/ask-expert">Ask an Expert</Link>
               </Button>
             </div>
