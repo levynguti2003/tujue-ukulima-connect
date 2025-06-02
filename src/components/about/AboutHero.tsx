@@ -17,7 +17,7 @@ const AboutHero = () => {
           <GraduationCap className="h-14 w-14 text-white mb-4" />
           <div className="bg-white/90 p-6 md:p-8 rounded-lg shadow-md">
             <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-              Skyfield Kenya is a forward-thinking agritech startup based in Mwea, Kenya, 
+              Skyfield Aerotech is a forward-thinking agritech startup based in Mwea, Kenya, 
               revolutionizing agriculture through innovative technologies. We are committed 
               to transforming the agricultural landscape in Africa by leveraging drone technology, 
               smart farming techniques, and digital platforms to boost productivity, sustainability, 

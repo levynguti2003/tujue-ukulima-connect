@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
@@ -54,7 +55,7 @@ const HeroSection = () => {
         <CarouselContent className="-ml-0">
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="pl-0 min-w-0">
-              <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+              <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[650px] overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
                   style={{
@@ -76,22 +77,22 @@ const HeroSection = () => {
       </Carousel>
 
       <div className="absolute inset-0 z-10">
-        <div className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-28 h-full flex items-center">
+        <div className="container mx-auto px-3 sm:px-4 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-28 h-full flex items-center">
           <div className="max-w-3xl">
-            <span className="bg-white/20 text-white px-3 py-1 sm:px-4 sm:py-1 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 inline-block backdrop-blur-sm">
+            <span className="bg-white/20 text-white px-2 sm:px-3 md:px-4 py-1 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 md:mb-6 inline-block backdrop-blur-sm">
               Kenya's Premier Agricultural Knowledge Platform
             </span>
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 sm:mb-6 animate-fade-in text-white drop-shadow-lg leading-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-heading font-bold mb-3 sm:mb-4 md:mb-6 animate-fade-in text-white drop-shadow-lg leading-tight">
               Empowering Farmers Through Knowledge, Innovation, and Community
             </h1>
-            <p className="text-base sm:text-lg md:text-xl opacity-90 mb-6 sm:mb-8 max-w-2xl animate-fade-in text-white drop-shadow-md leading-relaxed" style={{animationDelay: "0.1s"}}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl opacity-90 mb-4 sm:mb-6 md:mb-8 max-w-2xl animate-fade-in text-white drop-shadow-md leading-relaxed" style={{animationDelay: "0.1s"}}>
               Access farming expertise, connect with agricultural specialists, and discover the latest innovations in smart farming with Tujue Ukulima.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in" style={{animationDelay: "0.2s"}}>
-              <Button asChild size="lg" className="bg-white text-tu-green-700 hover:bg-tu-green-100 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 animate-fade-in" style={{animationDelay: "0.2s"}}>
+              <Button asChild size="lg" className="bg-white text-tu-green-700 hover:bg-tu-green-100 w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/articles">Explore Resources</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto text-sm sm:text-base">
                 <Link to="/ask-expert">Ask an Expert</Link>
               </Button>
             </div>
@@ -99,7 +100,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 h-8 sm:h-12 md:h-16 bg-gradient-to-t from-white to-transparent z-20"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-6 sm:h-8 md:h-12 lg:h-16 bg-gradient-to-t from-white to-transparent z-20"></div>
     </div>
   );
 };
