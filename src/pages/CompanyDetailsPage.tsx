@@ -1,4 +1,3 @@
-
 import Layout from "@/components/layout/Layout";
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -250,6 +249,95 @@ const companyData = {
         date: "January 5, 2025",
         category: "Water Management",
         readTime: "8 min read"
+      }
+    ]
+  },
+  "pula-advisors": {
+    name: "Pula Advisors",
+    tagline: "Protecting Agricultural Investments Through Innovative Insurance Solutions",
+    description: "Pula Advisors is a leading agricultural insurance and advisory company dedicated to protecting farmers and agricultural investments across Africa. We provide innovative insurance products, risk management solutions, and advisory services to help farmers mitigate risks and build resilient agricultural businesses.",
+    logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748928908/pula_pgpec3.png",
+    coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748928909/poula_ylmznu.png",
+    established: "2015",
+    location: "Nairobi, Kenya",
+    contact: {
+      phone: "+254 700 789 012",
+      email: "info@pulaadvisors.com"
+    },
+    videos: [
+      {
+        id: "ZBloTs2jEgA",
+        title: "Agricultural Insurance Solutions",
+        description: "Comprehensive insurance coverage for agricultural investments",
+        thumbnail: `https://img.youtube.com/vi/ZBloTs2jEgA/maxresdefault.jpg`
+      },
+      {
+        id: "CKcs7xpbW9U",
+        title: "Risk Management for Farmers",
+        description: "Effective risk management strategies for agricultural businesses",
+        thumbnail: `https://img.youtube.com/vi/CKcs7xpbW9U/maxresdefault.jpg`
+      },
+      {
+        id: "JwVeSMiRuFw",
+        title: "Agricultural Advisory Services",
+        description: "Expert advisory services for sustainable farming practices",
+        thumbnail: `https://img.youtube.com/vi/JwVeSMiRuFw/maxresdefault.jpg`
+      },
+      {
+        id: "cMMZEWLlL0c",
+        title: "Insurance Technology Innovation",
+        description: "Innovative technology solutions in agricultural insurance",
+        thumbnail: `https://img.youtube.com/vi/cMMZEWLlL0c/maxresdefault.jpg`
+      },
+      {
+        id: "-vHF1HAsfrQ",
+        title: "Farmer Protection Programs",
+        description: "Comprehensive protection programs for smallholder farmers",
+        thumbnail: `https://img.youtube.com/vi/-vHF1HAsfrQ/maxresdefault.jpg`
+      },
+      {
+        id: "tKP0Wf2-_hg",
+        title: "Agricultural Investment Security",
+        description: "Securing agricultural investments through innovative solutions",
+        thumbnail: `https://img.youtube.com/vi/tKP0Wf2-_hg/maxresdefault.jpg`
+      }
+    ],
+    blogs: [
+      {
+        id: 1,
+        title: "The Importance of Agricultural Insurance in Modern Farming",
+        excerpt: "Understanding how agricultural insurance protects farmers from unexpected losses and helps build resilient farming businesses across Africa.",
+        author: "Dr. Rose Gichuru",
+        date: "January 22, 2025",
+        category: "Insurance",
+        readTime: "7 min read"
+      },
+      {
+        id: 2,
+        title: "Climate Risk Management for Agricultural Investments",
+        excerpt: "Comprehensive strategies for managing climate-related risks in agriculture and protecting investments from weather uncertainties.",
+        author: "Samuel Njoroge",
+        date: "January 19, 2025",
+        category: "Risk Management",
+        readTime: "9 min read"
+      },
+      {
+        id: 3,
+        title: "Technology-Driven Insurance Solutions for Smallholder Farmers",
+        excerpt: "How innovative technology is making agricultural insurance more accessible and affordable for smallholder farmers across the continent.",
+        author: "Mary Wanjiku",
+        date: "January 16, 2025",
+        category: "Technology",
+        readTime: "8 min read"
+      },
+      {
+        id: 4,
+        title: "Building Resilient Agricultural Value Chains",
+        excerpt: "Strategies for creating robust agricultural value chains that can withstand market volatility and climate challenges.",
+        author: "James Kamau",
+        date: "January 13, 2025",
+        category: "Value Chains",
+        readTime: "10 min read"
       }
     ]
   }

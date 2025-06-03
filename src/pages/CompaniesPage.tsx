@@ -1,9 +1,8 @@
-
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Plane, Heart } from "lucide-react";
+import { ArrowRight, Plane, Heart, Users } from "lucide-react";
 
 const companies = [
   {
@@ -25,6 +24,16 @@ const companies = [
     specialty: "Community Development",
     established: "2018",
     icon: Heart
+  },
+  {
+    id: "pula-advisors",
+    name: "Pula Advisors",
+    description: "Providing innovative insurance solutions and advisory services to protect farmers and agricultural investments across Africa",
+    logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748928908/pula_pgpec3.png",
+    coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748928909/poula_ylmznu.png",
+    specialty: "Agricultural Insurance",
+    established: "2015",
+    icon: Users
   }
 ];
 
