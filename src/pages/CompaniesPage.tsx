@@ -22,7 +22,7 @@ const companies = [
     logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_logo_uw03kp.png",
     coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_foundation_bskd3k.jpg",
     specialty: "Community Development",
-    established: "2018",
+    established: "2023",
     icon: Heart
   },
   {

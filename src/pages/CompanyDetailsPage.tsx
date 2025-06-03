@@ -97,11 +97,11 @@ const companyData = {
     description: "Smachs Foundation is dedicated to transforming agricultural communities through comprehensive education programs, sustainable farming practices, and innovative solutions. We believe in empowering farmers with knowledge and tools to create lasting positive change in their communities.",
     logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_logo_uw03kp.png",
     coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_foundation_bskd3k.jpg",
-    established: "2018",
-    location: "Kampala, Uganda",
+    established: "2023",
+    location: "Nairobi, Kenya",
     contact: {
-      phone: "+256 700 123 456",
-      email: "info@smachsfoundation.org"
+      phone: "(+254) 700 090 999",
+      email: "info@smachs.foundation"
     },
     videos: [
       {
