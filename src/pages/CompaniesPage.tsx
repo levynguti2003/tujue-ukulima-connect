@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Drone } from "lucide-react";
+import { ArrowRight, Plane } from "lucide-react";
 
 const companies = [
   {
@@ -59,7 +59,7 @@ const CompaniesPage = () => {
                   
                   <CardContent className="p-6">
                     <div className="flex items-center gap-2 mb-2">
-                      <Drone className="w-5 h-5 text-tu-green-600" />
+                      <Plane className="w-5 h-5 text-tu-green-600" />
                       <span className="text-sm font-medium text-tu-green-600">{company.specialty}</span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-800 mb-3">{company.name}</h3>
