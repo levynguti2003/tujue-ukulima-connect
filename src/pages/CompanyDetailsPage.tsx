@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, Play, ExternalLink, MapPin, Phone, Mail } from "lucide-react";
 import { useState } from "react";
 import VideoModal from "@/components/videos/VideoModal";
+import ContactForm from "@/components/companies/ContactForm";
 
 const companyData = {
   "skyfield-aerotech": {
@@ -18,7 +19,7 @@ const companyData = {
     location: "Nairobi, Kenya",
     contact: {
       phone: "+254 700 123 456",
-      email: "info@skyfieldaerotech.com"
+      email: "skyfield.kenya@gmail.com"
     },
     videos: [
       {
@@ -262,7 +263,7 @@ const companyData = {
     location: "Nairobi, Kenya",
     contact: {
       phone: "+254 700 789 012",
-      email: "info@pulaadvisors.com"
+      email: "info@pula.io"
     },
     videos: [
       {
@@ -406,6 +407,12 @@ const CompanyDetailsPage = () => {
               <div className="lg:col-span-2">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">About {company.name}</h2>
                 <p className="text-gray-600 leading-relaxed mb-8">{company.description}</p>
+                
+                {/* Contact Form */}
+                <ContactForm 
+                  companyName={company.name}
+                  companyEmail={company.contact.email}
+                />
               </div>
               <div>
                 <Card>
