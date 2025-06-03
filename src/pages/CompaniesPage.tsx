@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Plane } from "lucide-react";
+import { ArrowRight, Plane, Heart } from "lucide-react";
 
 const companies = [
   {
@@ -13,7 +13,18 @@ const companies = [
     logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1737550678/WhatsApp_Image_2024-09-15_at_02.14.00_c07c6102_a4qllk.jpg",
     coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748529254/WhatsApp_Image_2025-05-29_at_17.32.56_ea67fa29_ykt8q4.jpg",
     specialty: "Drone Technology",
-    established: "2020"
+    established: "2020",
+    icon: Plane
+  },
+  {
+    id: "smachs-foundation",
+    name: "Smachs Foundation",
+    description: "Empowering agricultural communities through education, sustainable practices, and innovative farming solutions",
+    logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_logo_uw03kp.png",
+    coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_foundation_bskd3k.jpg",
+    specialty: "Community Development",
+    established: "2018",
+    icon: Heart
   }
 ];
 
@@ -59,7 +70,7 @@ const CompaniesPage = () => {
                   
                   <CardContent className="p-6">
                     <div className="flex items-center gap-2 mb-2">
-                      <Plane className="w-5 h-5 text-tu-green-600" />
+                      <company.icon className="w-5 h-5 text-tu-green-600" />
                       <span className="text-sm font-medium text-tu-green-600">{company.specialty}</span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-800 mb-3">{company.name}</h3>

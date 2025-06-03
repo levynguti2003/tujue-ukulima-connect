@@ -91,6 +91,167 @@ const companyData = {
         readTime: "10 min read"
       }
     ]
+  },
+  "smachs-foundation": {
+    name: "Smachs Foundation",
+    tagline: "Empowering Agricultural Communities Through Education and Innovation",
+    description: "Smachs Foundation is dedicated to transforming agricultural communities through comprehensive education programs, sustainable farming practices, and innovative solutions. We believe in empowering farmers with knowledge and tools to create lasting positive change in their communities.",
+    logo: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_logo_uw03kp.png",
+    coverImage: "https://res.cloudinary.com/dalbjrgto/image/upload/v1748920724/smachs_foundation_bskd3k.jpg",
+    established: "2018",
+    location: "Kampala, Uganda",
+    contact: {
+      phone: "+256 700 123 456",
+      email: "info@smachsfoundation.org"
+    },
+    videos: [
+      {
+        id: "uzn84Zjnd94",
+        title: "Community Agricultural Development",
+        description: "Empowering farming communities through education and sustainable practices",
+        thumbnail: `https://img.youtube.com/vi/uzn84Zjnd94/maxresdefault.jpg`
+      },
+      {
+        id: "tBiRbPlHbJI",
+        title: "Sustainable Farming Education",
+        description: "Training programs for modern agricultural techniques",
+        thumbnail: `https://img.youtube.com/vi/tBiRbPlHbJI/maxresdefault.jpg`
+      },
+      {
+        id: "bIn2rRiCEHM",
+        title: "Agricultural Innovation Programs",
+        description: "Innovative solutions for smallholder farmers",
+        thumbnail: `https://img.youtube.com/vi/bIn2rRiCEHM/maxresdefault.jpg`
+      },
+      {
+        id: "5oVvetZm5Oo",
+        title: "Community Impact Stories",
+        description: "Real stories of transformation in agricultural communities",
+        thumbnail: `https://img.youtube.com/vi/5oVvetZm5Oo/maxresdefault.jpg`
+      },
+      {
+        id: "n562ieDtTyU",
+        title: "Live Agricultural Workshop",
+        description: "Interactive learning sessions with farming communities",
+        thumbnail: `https://img.youtube.com/vi/n562ieDtTyU/maxresdefault.jpg`
+      },
+      {
+        id: "sTRlgdZEizI",
+        title: "Organic Farming Techniques",
+        description: "Sustainable organic farming methods and practices",
+        thumbnail: `https://img.youtube.com/vi/sTRlgdZEizI/maxresdefault.jpg`
+      },
+      {
+        id: "Lv7wylrazfw",
+        title: "Water Conservation in Agriculture",
+        description: "Efficient water management for sustainable farming",
+        thumbnail: `https://img.youtube.com/vi/Lv7wylrazfw/maxresdefault.jpg`
+      },
+      {
+        id: "qgaSmCXcfvY",
+        title: "Crop Diversification Strategies",
+        description: "Building resilient farming systems through crop diversity",
+        thumbnail: `https://img.youtube.com/vi/qgaSmCXcfvY/maxresdefault.jpg`
+      },
+      {
+        id: "xXmWDX9KTCM",
+        title: "Agricultural Finance and Support",
+        description: "Financial literacy and support systems for farmers",
+        thumbnail: `https://img.youtube.com/vi/xXmWDX9KTCM/maxresdefault.jpg`
+      },
+      {
+        id: "pt48gO-y9W4",
+        title: "Quick Farming Tips",
+        description: "Essential farming tips for better yields",
+        thumbnail: `https://img.youtube.com/vi/pt48gO-y9W4/maxresdefault.jpg`
+      },
+      {
+        id: "R-YjuMhAVMk",
+        title: "Soil Health Management",
+        description: "Maintaining and improving soil fertility naturally",
+        thumbnail: `https://img.youtube.com/vi/R-YjuMhAVMk/maxresdefault.jpg`
+      },
+      {
+        id: "roZtOXpGA8s",
+        title: "Climate-Smart Agriculture",
+        description: "Adapting farming to climate change challenges",
+        thumbnail: `https://img.youtube.com/vi/roZtOXpGA8s/maxresdefault.jpg`
+      },
+      {
+        id: "dS6HP8N8vzs",
+        title: "Pest Management Solutions",
+        description: "Natural and effective pest control methods",
+        thumbnail: `https://img.youtube.com/vi/dS6HP8N8vzs/maxresdefault.jpg`
+      },
+      {
+        id: "UZt2wqIksQU",
+        title: "Harvest Optimization",
+        description: "Maximizing harvest quality and quantity",
+        thumbnail: `https://img.youtube.com/vi/UZt2wqIksQU/maxresdefault.jpg`
+      },
+      {
+        id: "dts1jVPEszM",
+        title: "Agricultural Technology Adoption",
+        description: "Integrating modern technology in traditional farming",
+        thumbnail: `https://img.youtube.com/vi/dts1jVPEszM/maxresdefault.jpg`
+      }
+    ],
+    blogs: [
+      {
+        id: 1,
+        title: "Building Resilient Agricultural Communities Through Education",
+        excerpt: "Discover how comprehensive education programs are transforming farming communities and creating sustainable agricultural practices across East Africa.",
+        author: "Dr. Alice Nambi",
+        date: "January 20, 2025",
+        category: "Education",
+        readTime: "9 min read"
+      },
+      {
+        id: 2,
+        title: "Sustainable Farming: A Path to Food Security",
+        excerpt: "Explore sustainable farming practices that not only protect the environment but also ensure long-term food security for growing populations.",
+        author: "Samuel Kiprotich",
+        date: "January 18, 2025",
+        category: "Sustainability",
+        readTime: "7 min read"
+      },
+      {
+        id: 3,
+        title: "Empowering Women in Agriculture: Stories of Change",
+        excerpt: "Learn about the remarkable women who are leading agricultural transformation in their communities and inspiring the next generation of farmers.",
+        author: "Margaret Achieng",
+        date: "January 15, 2025",
+        category: "Community",
+        readTime: "8 min read"
+      },
+      {
+        id: 4,
+        title: "Climate-Smart Agriculture: Adapting to Change",
+        excerpt: "Understanding how farmers can adapt their practices to climate change while maintaining productivity and supporting their livelihoods.",
+        author: "Dr. Joseph Mukasa",
+        date: "January 12, 2025",
+        category: "Climate",
+        readTime: "10 min read"
+      },
+      {
+        id: 5,
+        title: "Organic Farming: Benefits and Best Practices",
+        excerpt: "A comprehensive guide to organic farming methods, their environmental benefits, and how they contribute to healthier food systems.",
+        author: "Grace Nakato",
+        date: "January 8, 2025",
+        category: "Organic Farming",
+        readTime: "6 min read"
+      },
+      {
+        id: 6,
+        title: "Water Conservation Techniques for Small-Scale Farmers",
+        excerpt: "Practical water conservation strategies that help farmers maximize their yields while preserving this precious resource for future generations.",
+        author: "Peter Wanyama",
+        date: "January 5, 2025",
+        category: "Water Management",
+        readTime: "8 min read"
+      }
+    ]
   }
 };
 
