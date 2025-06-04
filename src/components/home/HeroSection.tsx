@@ -34,7 +34,7 @@ const HeroSection = () => {
   }, [api]);
 
   return (
-    <div className="relative text-white overflow-hidden h-screen">
+    <div className="relative text-white overflow-hidden h-[75vh]">
       <Carousel 
         setApi={setApi}
         className="w-full h-full"
@@ -54,7 +54,7 @@ const HeroSection = () => {
         <CarouselContent className="-ml-0">
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="pl-0 min-w-0">
-              <div className="relative h-screen overflow-hidden">
+              <div className="relative h-[75vh] overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
                   style={{
@@ -78,11 +78,11 @@ const HeroSection = () => {
         <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black w-12 h-12 rounded-full" />
       </Carousel>
 
-      {/* White Border Design Elements - Left Side Focus for Mobile */}
-      <div className="absolute top-0 left-0 w-20 h-20 md:w-32 md:h-32 border-l-8 border-t-8 border-white z-10"></div>
-      <div className="absolute top-0 left-0 w-8 h-32 md:w-12 md:h-48 bg-white z-10"></div>
-      <div className="absolute bottom-0 left-0 w-20 h-8 md:w-32 md:h-12 border-b-8 border-white z-10"></div>
-      <div className="absolute bottom-0 left-0 w-8 h-32 md:w-12 md:h-48 bg-white z-10"></div>
+      {/* White Border Design Elements - Left Side */}
+      <div className="absolute top-0 left-0 w-16 h-16 md:w-24 md:h-24 border-l-8 border-t-8 border-white z-10"></div>
+      <div className="absolute top-0 left-0 w-6 h-24 md:w-8 md:h-32 bg-white z-10"></div>
+      <div className="absolute bottom-0 left-0 w-16 h-6 md:w-24 md:h-8 border-b-8 border-white z-10"></div>
+      <div className="absolute bottom-0 left-0 w-6 h-24 md:w-8 md:h-32 bg-white z-10"></div>
 
       <div className="absolute inset-0 z-10">
         <div className="container mx-auto px-6 md:px-8 h-full flex flex-col justify-center">
@@ -108,12 +108,12 @@ const HeroSection = () => {
               Your go-to hub for fun, easy, and expert farming tips straight from the field.
             </p>
             
-            <div className="flex flex-col gap-4 pt-4 animate-fade-in transform transition-all duration-1000" style={{animationDelay: "1.3s"}}>
-              <Button asChild size="lg" className="bg-tu-green-600 text-white hover:bg-tu-green-700 w-full md:w-auto text-base md:text-lg px-8 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold">
-                <Link to="/articles">Read More</Link>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in transform transition-all duration-1000 justify-start" style={{animationDelay: "1.3s"}}>
+              <Button asChild size="lg" className="bg-tu-green-600 text-white hover:bg-tu-green-700 w-auto text-base md:text-lg px-6 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold">
+                <Link to="/articles">Browse Articles</Link>
               </Button>
-              <Button asChild size="lg" className="bg-orange-600 text-white hover:bg-orange-700 w-full md:w-auto text-base md:text-lg px-8 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold">
-                <Link to="/ask-expert">Tujue Ukulima</Link>
+              <Button asChild size="lg" className="bg-orange-600 text-white hover:bg-orange-700 w-auto text-base md:text-lg px-6 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold">
+                <Link to="/ask-expert">Ask an Expert</Link>
               </Button>
             </div>
           </div>
