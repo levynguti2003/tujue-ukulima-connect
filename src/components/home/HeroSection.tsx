@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -72,17 +72,13 @@ const HeroSection = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        
-        {/* Custom Navigation Buttons */}
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black w-12 h-12 rounded-full" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black w-12 h-12 rounded-full" />
       </Carousel>
 
-      {/* White Border Design Elements - Left Side */}
-      <div className="absolute top-0 left-0 w-16 h-16 md:w-24 md:h-24 border-l-8 border-t-8 border-white z-10"></div>
-      <div className="absolute top-0 left-0 w-6 h-24 md:w-8 md:h-32 bg-white z-10"></div>
-      <div className="absolute bottom-0 left-0 w-16 h-6 md:w-24 md:h-8 border-b-8 border-white z-10"></div>
-      <div className="absolute bottom-0 left-0 w-6 h-24 md:w-8 md:h-32 bg-white z-10"></div>
+      {/* White Border Design Elements - Left Side - More Proportional */}
+      <div className="absolute top-0 left-0 w-8 h-8 md:w-12 md:h-12 border-l-4 border-t-4 border-white z-10"></div>
+      <div className="absolute top-0 left-0 w-3 h-12 md:w-4 md:h-16 bg-white z-10"></div>
+      <div className="absolute bottom-0 left-0 w-8 h-3 md:w-12 md:h-4 border-b-4 border-white z-10"></div>
+      <div className="absolute bottom-0 left-0 w-3 h-12 md:w-4 md:h-16 bg-white z-10"></div>
 
       <div className="absolute inset-0 z-10">
         <div className="container mx-auto px-6 md:px-8 h-full flex flex-col justify-center">
@@ -117,15 +113,6 @@ const HeroSection = () => {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
-      
-      {/* Bottom Arrow/Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 z-20">
-        <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center bg-tu-green-600/80 hover:bg-tu-green-600 transition-colors cursor-pointer">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
         </div>
       </div>
       
