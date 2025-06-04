@@ -407,12 +407,6 @@ const CompanyDetailsPage = () => {
               <div className="lg:col-span-2">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">About {company.name}</h2>
                 <p className="text-gray-600 leading-relaxed mb-8">{company.description}</p>
-                
-                {/* Contact Form */}
-                <ContactForm 
-                  companyName={company.name}
-                  companyEmail={company.contact.email}
-                />
               </div>
               <div>
                 <Card>
@@ -495,6 +489,18 @@ const CompanyDetailsPage = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section - Moved to bottom */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <ContactForm 
+                companyName={company.name}
+                companyEmail={company.contact.email}
+              />
             </div>
           </div>
         </section>

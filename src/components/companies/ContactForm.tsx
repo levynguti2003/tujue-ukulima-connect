@@ -31,15 +31,22 @@ const ContactForm = ({ companyName, companyEmail }: ContactFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create Gmail compose URL with pre-filled data
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(companyEmail)}&su=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Dear ${companyName} Team,\n\n${formData.message}\n\nBest regards,\n${formData.name}\n${formData.email}`
-    )}`;
+    // Create properly formatted email body
+    const emailBody = `Dear ${companyName} Team,
+
+${formData.message}
+
+Best regards,
+${formData.name}
+Email: ${formData.email}`;
+
+    // Create Gmail compose URL with properly encoded data
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(companyEmail)}&su=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailBody)}`;
 
     // Open Gmail in a new tab
     window.open(gmailUrl, '_blank');
     
-    // Reset form
+    // Reset form after opening Gmail
     setFormData({
       name: '',
       email: '',
@@ -121,7 +128,7 @@ const ContactForm = ({ companyName, companyEmail }: ContactFormProps) => {
             Send via Gmail
           </Button>
           <p className="text-xs text-gray-500 text-center">
-            This will open Gmail in a new tab with your message pre-filled
+            This will open Gmail in a new tab with your message pre-filled. You can edit before sending.
           </p>
         </form>
       </CardContent>
